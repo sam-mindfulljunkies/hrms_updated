@@ -292,7 +292,16 @@
     }, 15000);
   });
 </script>
-
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			// Datatables Responsive
+			$("#datatables-reponsive").DataTable({
+				responsive: true
+			});
+		});
+	</script>
+	<script src="{{asset('assets/js/datatables.js')}}"></script>
+	@stack('script')
 </body>
 
 </html>

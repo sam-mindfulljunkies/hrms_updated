@@ -12,6 +12,17 @@
 					</li>
 					@if(Auth::guard('admin')->user()->role_id == 1)
 					<li class="sidebar-item">
+						<a href="{{route('users')}}" class="sidebar-link">
+							<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">users</span>
+						</a>
+					</li>
+
+					<li class="sidebar-item">
+						<a href="{{route('reports')}}" class="sidebar-link">
+							<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Reports</span>
+						</a>
+					</li>
+					<!--<li class="sidebar-item">
 						<a data-target="#pages" data-toggle="collapse" class="sidebar-link collapsed">
 							<i class="align-middle" data-feather="layout"></i> <span class="align-middle">Pages</span>
 						</a>
@@ -26,8 +37,8 @@
 							<li class="sidebar-item"><a class="sidebar-link" href="pages-chat.html">Chat <span
 										class="sidebar-badge badge bg-primary">Pro</span></a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="pages-blank.html">Blank Page</a></li>
-						</ul> -->
-					</li>
+						</ul>
+					</li>-->
 					<!-- <li class="sidebar-item">
 						<a class="sidebar-link" href="pages-profile.html">
 							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
@@ -212,7 +223,7 @@
 					
 				</ul>
 
-				<div class="sidebar-cta">
+				<!-- <div class="sidebar-cta">
 					<div class="sidebar-cta-content">
 						<strong class="d-inline-block mb-2">Weekly Sales Report</strong>
 						<div class="mb-3 text-sm">
@@ -220,6 +231,6 @@
 						</div>
 						<a href="https://adminkit.io/" class="btn btn-outline-primary btn-block" target="_blank">Download</a>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</nav>

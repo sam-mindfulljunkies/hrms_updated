@@ -79,7 +79,7 @@
 								</div>
 							</div>
 						</li>
-						<li class="nav-item dropdown">
+						<!-- <li class="nav-item dropdown">
 							<a class="nav-icon dropdown-toggle" href="#" id="messagesDropdown" data-toggle="dropdown">
 								<div class="position-relative">
 									<i class="align-middle" data-feather="message-square"></i>
@@ -144,9 +144,9 @@
 								<div class="dropdown-menu-footer">
 									<a href="#" class="text-muted">Show all messages</a>
 								</div>
-							</div>
-						</li>
-						<li class="nav-item dropdown">
+							</div> 
+						</li> -->
+						<!-- <li class="nav-item dropdown">
 							<a class="nav-flag dropdown-toggle" href="#" id="languageDropdown" data-toggle="dropdown">
 								<img src="img/flags/us.png" alt="English" />
 							</a>
@@ -168,12 +168,12 @@
 									<span class="align-middle">German</span>
 								</a>
 							</div>
-						</li>
+						</li> -->
 						<li class="nav-item dropdown">
 							<a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-toggle="dropdown">
 								<i class="align-middle" data-feather="settings"></i>
 							</a>
-@if(Auth::guard('admin')->user()->role_id == 1)
+						@if(Auth::guard('admin')->user()->role_id == 1)
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-toggle="dropdown">
 								<!-- <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded mr-1" alt="Charles Hall" />  -->
 								<span class="text-dark">{{Auth::guard('admin')->user()->username}}</span>
