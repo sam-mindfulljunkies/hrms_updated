@@ -19,11 +19,10 @@
 	<title>AdminKit Demo - Bootstrap 5 Admin Template</title>
 
 	<link href="{{asset('assets/css/app.css')}}" rel="stylesheet">
-
-	<!-- BEGIN SETTINGS -->
-	<!-- <script src="js/settings.js"></script> -->
-	<!-- END SETTINGS -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120946860-10"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/base/jquery-ui.css">
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120946860-10"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}

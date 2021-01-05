@@ -24,7 +24,7 @@ Route::group(['middleware' => 'admin'],function(){
     Route::get('/logout', [LoginController::class, 'admin_logout'])->name('admin.logout');
     Route::get('/reports', [ReportController::class, 'index'])->name('reports');
     Route::get('/users', [UserController::class, 'index'])->name('users');
-    Route::post('/reports/users/{id}', [ReportController::class, 'getuserReport'])->name('user_reports');
+    Route::post('/reports/users/{date}', [ReportController::class, 'getuserReport'])->name('user_reports');
     Route::get('/reports/users/{id}', [ReportController::class, 'getuserDetailedReportById'])->name('users.details.report');
 });
 

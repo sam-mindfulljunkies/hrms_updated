@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <style>
-select#user_filters{
+.datepickers-init{
 	width:275px;
 	float:left;
 }</style>
@@ -31,17 +31,13 @@ select#user_filters{
 								<div class="card-header">
 									<h5 class="card-title">Reports</h5>
 								
-								<label style="float:left;margin-top:4px;"><b>Select User : &nbsp;&nbsp;</b></label>
-								<select name="user_filter" class="form-control" id="user_filters" width="100px">
-								<option value="">Select User</option>
-								@foreach(\App\Models\User::where('role_id',2)->get() as $val)
-								<option value="{{$val->id}}">{{$val->username}}</option>
-								@endforeach
-								</select>
+								<label style="float:left;margin-top:4px;"><b>Select Date : &nbsp;&nbsp;</b></label>
+								<input type="date" class="datepickers-init form-control" id="datepick">
 								</div>
-								<div class="card-body">
-								<table id="datatables-reponsive" class="table table-striped" style="width:100%">
-										<thead>
+								<div class="card-body classrelaced">
+									@include('report.renderuserdiv')
+								<!-- <table id="datatables-reponsive" class="table table-striped" style="width:100%"> -->
+										<!-- <thead>
 											<tr>
 												<th>Id</th>
 												<th>Date</th>
@@ -52,9 +48,9 @@ select#user_filters{
 											</tr>
 										</thead>
 										<tbody class="classrelaced">
-											@include('report.renderuserdiv')
-										</tbody>
-									</table>
+
+										</tbody> -->
+									<!-- </table> -->
 								</div>
 							</div>
 						</div>
@@ -64,26 +60,12 @@ select#user_filters{
 			</main>
 
 			@endsection
+
 			@push('script')
 			<script>
-			$("#user_filters").on('change',function(){
-				var user_id = $(this).val();
-				var url = '/reports/users/'+user_id;
-				$.ajax({
-					url:url,
-					method:"POST",
-					data: {
-        				"_token": "{{ csrf_token() }}",
-					},
-					success:function(e){
-						$(".classrelaced").html(e);
-					}
-				})
-			})
-
-			$(".view_click").on('click',function(){
-				var user_id = $(this).val();
-				var url = '/reports/users/details'+user_id;
+			$("#datepick").on('change',function(){
+				var date = $(this).val();
+				var url = '/reports/users/'+date;
 				$.ajax({
 					url:url,
 					method:"POST",
