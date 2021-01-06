@@ -23,9 +23,9 @@ class ReportController extends Controller
         foreach($user as $key => $val){
             $user[$key]['reports'] = Reports::where('user_id',$val->id)->where('date',$date)->get(); 
         }
-        echo "<pre>";
-        // print_r($user[0]['reports']);
-        exit;
+        // echo "<pre>";
+        // // print_r($user[0]['reports']);
+        // exit;
         return view('report.renderuserdiv',compact('user'))->render();
     }
     public function getuserDetailedReportById($report_id){
