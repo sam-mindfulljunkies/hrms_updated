@@ -11,6 +11,7 @@
 	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
 	<meta name="author" content="AdminKit">
 	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
@@ -23,6 +24,7 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/base/jquery-ui.css">
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120946860-10"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -36,16 +38,17 @@
   data-layout: fluid (default), boxed
   data-sidebar: left (default), right
 -->
-
+<style>
+	.swal-height {
+ 	 height: 80vh;
+}
+</style>
 <body data-theme="default" data-layout="fluid" data-sidebar="left">
 	<div class="wrapper">
 	@include('layouts.sidebar')
-
 		<div class="main">
 			@include('layouts.header')
-
 			@yield('content')
-
 			@include('layouts.footer')
 		</div>
 	</div>

@@ -26,6 +26,7 @@
 							<div class="card">
 								<div class="card-header">
 									<h5 class="card-title">Users</h5>
+									<a href="{{route('user.add_form')}}" class="btn btn-sm btn-primary" style="float:right">+Add</a>
 									<!-- <h6 class="card-subtitle text-muted">Highly flexible tool that many advanced features to any HTML table. See official -->
 										<!-- documentation <a href="https://datatables.net/extensions/responsive/" target="_blank" -->
 											<!-- rel="noopener noreferrer">here</a>.</h6> -->
@@ -41,6 +42,8 @@
 												<th>Role</th>
 												<th>Email</th>
 												<th>Address</th>
+												<th>Edit</th>
+												<th>Delete</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -53,6 +56,8 @@
 												<td>{{$val->role_id}}</td>
 												<td>{{$val->email}}</td>
 												<td>{{$val->address}}</td>
+												<td><a href="{{route('edit_user',$val->id)}}" class="btn btn-primary btn-sm">Edit</a></td>
+												<td><a href="{{route('delete_user',$val->id)}}" class="btn btn-danger btn-sm">Delete</a></td>
 											</tr>
 											@endforeach
 										</tbody>

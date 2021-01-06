@@ -36,21 +36,6 @@
 								</div>
 								<div class="card-body classrelaced">
 									@include('report.renderuserdiv')
-								<!-- <table id="datatables-reponsive" class="table table-striped" style="width:100%"> -->
-										<!-- <thead>
-											<tr>
-												<th>Id</th>
-												<th>Date</th>
-												<th>Time</th>
-												<th>description</th>
-												<th>Image</th>
-												<th>Details</th>
-											</tr>
-										</thead>
-										<tbody class="classrelaced">
-
-										</tbody> -->
-									<!-- </table> -->
 								</div>
 							</div>
 						</div>
