@@ -4,7 +4,9 @@
 <tr>
         <th>User</th>
         <th>Date</th>
-        <th>Time Slot</th>
+        <th>Start time</th>
+        <th>End time</th>
+        <th>Hour</th>
         <th>Description</th>
         <th>Image</th>
     </tr>
@@ -23,9 +25,11 @@
         @if($count == 0)
         <td rowspan="{{count($val->reports)}}" width="10%">{{$val1->date}}</td>
         @endif
-        <td>{{$val1->time}}</td>
+        <td>{{$val1->start_time}}</td>
+        <td>{{$val1->end_time}}</td>
+        <td>{{$val1->hours}}</td>
         <td>{{$val1->description}}</td>
-        <td>{{$val1->image}}</td>
+        <td><img src="{{asset('public/uploads/')}}/{{$val1->image}}" style="height:100px"></td>
         </tr>
         @php
         @$count++;

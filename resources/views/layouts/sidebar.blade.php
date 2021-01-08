@@ -6,7 +6,7 @@
 				<ul class="sidebar-nav">
 					
 					<li class="sidebar-item active">
-						<a data-target="#dashboards" data-toggle="collapse" class="sidebar-link">
+						<a class="sidebar-link" href="{{route('home')}}">
 							<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboards</span>
 						</a>
 					</li>
@@ -22,10 +22,20 @@
 							<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Reports</span>
 						</a>
 					</li>
+					<li class="sidebar-item">
+						<a href="{{route('notification.list')}}" class="sidebar-link">
+							<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Notidication</span>
+						</a>
+					</li>
 					@endif
 					@if(Auth::guard('admin')->user()->role_id == 2)
 					<li class="sidebar-item">
 						<a href="{{route('reports.users',Auth::guard('admin')->user()->id)}}" class="sidebar-link">
+							<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Notidication</span>
+						</a>
+					</li>
+					<li class="sidebar-item">
+						<a href="{{route('notification.users',Auth::guard('admin')->user()->id)}}" class="sidebar-link">
 							<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Reports</span>
 						</a>
 					</li>

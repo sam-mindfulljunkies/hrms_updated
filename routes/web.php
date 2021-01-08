@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,6 @@ use App\Http\Controllers\UserController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', [LoginController::class, 'index'])->name('home');
 Route::post('/login', [LoginController::class, 'check_auth'])->name('login');
 
@@ -40,6 +40,11 @@ Route::group(['middleware' => 'admin'],function(){
     Route::post('/users/update/', [UserController::class, 'update'])->name('update_user');        
     Route::get('/users/delete/{id}', [UserController::class, 'delete'])->name('delete_user');
     Route::get('/users/delete/{id}', [UserController::class, 'delete'])->name('delete_user');        
+    
+    /**Notification Controller */
+    Route::get('/notifications', [NotificationController::class, 'add_form'])->name('notification.add_form');
+    Route::get('/notifications/list', [NotificationController::class, 'lisiting_admin'])->name('notification.list');
+    Route::get('/notifications/user/{id}', [NotificationController::class, 'listing'])->name('notification.users');    
 });
 
 Route::middleware(['employee'])->group(function () {

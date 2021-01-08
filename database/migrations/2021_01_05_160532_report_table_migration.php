@@ -19,6 +19,10 @@ class ReportTableMigration extends Migration
             $table->text('description');
             $table->date('date');
             $table->time('time');
+            $table->time('start_time');
+            $table->time('end_time');
+            $table->integer('hours');
+            $table->string('project');
             $table->string('image');
             $table->timestamps();
         });

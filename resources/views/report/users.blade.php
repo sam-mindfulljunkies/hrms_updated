@@ -42,7 +42,9 @@
                                     <tr>
                                             <th>User</th>
                                             <th>Date</th>
-                                            <th>Time Slot</th>
+                                            <th>Start time</th>
+                                            <th>End time</th>
+                                            <th>Hour</th>
                                             <th>Description</th>
                                             <th>Image</th>
                                         </tr>
@@ -59,7 +61,9 @@
                                             @if($count == 0)
                                             <td rowspan="{{count($report)}}" width="10%">{{$val->date}}</td>
                                             @endif
-                                            <td>{{$val->time}}</td>
+                                            <td>{{$val->start_time}}</td>
+                                            <td>{{$val->end_time}}</td>
+                                            <td>{{$val->hours}}</td>
                                             <td>{{$val->description}}</td>
                                             <td><img src="{{asset('public/uploads/')}}/{{$val->image}}" class="class-image" height="100px"></td>
                                             </tr>

@@ -23,6 +23,24 @@
 											<label class="form-label" for="inputAddress2">File</label>
 											<input type="file" class="form-control" name="image" id="file" onchange="fileValidation()"/>
                                         </div>
+                                        <div class="row">
+											<div class="mb-3 col-md-3">
+                                                <label class="form-label" for="inputEmail4">Start Time</label>
+												<input type="time" name="start_time" class="form-control" id="start_time">
+                                            </div>
+                                            <div class="mb-3 col-md-3">
+												<label class="form-label" for="inputEmail4">End Time</label>
+												<input type="time" name="end_time" class="form-control" id="end_time">
+                                            </div>
+                                            <div class="mb-3 col-md-3">
+                                                <label class="form-label" for="inputAddress2">Project</label>
+                                                <input type="text" class="form-control" name="project"/>
+                                            </div>
+                                            <div class="mb-3 col-md-3">
+                                                <label class="form-label" for="inputAddress2">Hours</label>
+                                                <input type="text" class="form-control" name="hours"/>
+                                            </div>
+                                        </div>
 											<div class="mb-3 col-md-12">
 												<label class="form-label" for="inputPassword4">Description</label>
 												<textarea class="form-control" name="description" style="resize:none;height:100px"></textarea>
@@ -65,7 +83,21 @@ $(document).ready(function () {
             description: {
                 required: true
             },
-            file:{
+            image:{
+                required:true
+            },
+            hours:{
+                required:true,
+                digits:true,
+                minlength:1,
+            },
+            start_time:{
+                required:true
+            },
+            end_time:{
+                required:true
+            },
+            project:{
                 required:true
             }
         },

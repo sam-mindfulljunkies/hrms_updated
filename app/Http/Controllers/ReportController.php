@@ -47,8 +47,12 @@ class ReportController extends Controller
         }
         $report =  new Reports();
         $report->date = date('Y-m-d');
-        $report->time = date('H:i:s');
+        $report->start_time = $request->start_time;
+        $report->end_time = $request->end_time;
+        $report->hours = $request->hours;
+        $report->project = $request->project;
         $report->image = $filename;
+        $report->time = date('H:i:s');
         $report->user_id = Auth::guard('admin')->user()->id;
         $report->description = $request->description;
         $report->save();
