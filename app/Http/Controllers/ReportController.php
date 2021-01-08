@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Reports;
 use App\Models\User;
+use Auth,URL;
 
 class ReportController extends Controller
 {
@@ -25,7 +26,31 @@ class ReportController extends Controller
         }
         return view('report.renderuserdiv',compact('user'))->render();
     }
-    public function getuserDetailedReportById($report_id){
-        $report = Reports::where('id',$report_id)->first();
+    // public function getuserDetailedReportById($report_id){
+    //     $report = Reports::where('id',$report_id)->first();
+    // }
+    public function getUserReportByuserId($userid){
+        $report = Reports::where('user_id',$userid)->where('date',date('Y-m-d'))->get();
+        return view('report.users',compact('report'));
+    }
+    public function formadd_report(){
+        return view('report.add_form');
+    }
+    public function submit_report(Request $request){
+
+        if($request->file('image')!=null){
+            $file = $request->file('image');
+            $filename = $file->getClientOriginalName();
+            $file->move('./public/uploads/', $filename);
+        }else{
+            $filename = "";
+        }
+        $report =  new Reports();
+        $report->date = date('Y-m-d');
+        $report->time = date('H:i:s');
+        $report->image = $filename;
+        $report->user_id = Auth::guard('admin')->user()->id;
+        $report->description = $request->description;
+        $report->save();
     }
 }

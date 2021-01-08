@@ -61,4 +61,11 @@ class UserController extends Controller
         $user->update();
         return json_encode(['status'=>200]);
     }
+
+    public function delete($id){
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->route('users');
+    }
+    
 }

@@ -27,6 +27,10 @@ Route::group(['middleware' => 'admin'],function(){
     Route::get('/reports', [ReportController::class, 'index'])->name('reports');
     Route::post('/reports/users/{date}', [ReportController::class, 'getuserReport'])->name('user_reports');
     Route::get('/reports/users/{id}', [ReportController::class, 'getuserDetailedReportById'])->name('users.details.report');
+    Route::get('/reports/{id}', [ReportController::class, 'getUserReportByuserId'])->name('reports.users');
+    Route::get('/report/add/form/', [ReportController::class, 'formadd_report'])->name('reports.addforms');
+    Route::post('/report/submit_report/', [ReportController::class, 'submit_report'])->name('submit_report');
+    
     
     /**User Controller */
     Route::get('/users/add_form/', [UserController::class, 'add_form'])->name('user.add_form');
@@ -34,6 +38,7 @@ Route::group(['middleware' => 'admin'],function(){
     Route::post('/users/submit_user', [UserController::class, 'submit_user'])->name('submit_user');        
     Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('edit_user');        
     Route::post('/users/update/', [UserController::class, 'update'])->name('update_user');        
+    Route::get('/users/delete/{id}', [UserController::class, 'delete'])->name('delete_user');
     Route::get('/users/delete/{id}', [UserController::class, 'delete'])->name('delete_user');        
 });
 

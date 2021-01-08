@@ -22,11 +22,20 @@
 							<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Reports</span>
 						</a>
 					</li>
+					@endif
+					@if(Auth::guard('admin')->user()->role_id == 2)
+					<li class="sidebar-item">
+						<a href="{{route('reports.users',Auth::guard('admin')->user()->id)}}" class="sidebar-link">
+							<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Reports</span>
+						</a>
+					</li>
+					@endif
+
 					<!--<li class="sidebar-item">
 						<a data-target="#pages" data-toggle="collapse" class="sidebar-link collapsed">
 							<i class="align-middle" data-feather="layout"></i> <span class="align-middle">Pages</span>
 						</a>
-						<!-- <ul id="pages" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
+						<ul id="pages" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
 							<li class="sidebar-item"><a class="sidebar-link" href="pages-settings.html">Settings</a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="pages-projects.html">Projects <span
 										class="sidebar-badge badge bg-primary">Pro</span></a></li>
@@ -219,8 +228,6 @@
 							</li>
 						</ul>
 					</li> -->
-					@endif
-					
 				</ul>
 
 				<!-- <div class="sidebar-cta">
