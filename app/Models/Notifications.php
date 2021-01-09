@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Notifications extends Model
 {
     use HasFactory;
+    public function users()
+    {
+        return $this->hasOne('App\Models\User');
+    }
 }

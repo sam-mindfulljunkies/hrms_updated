@@ -16,7 +16,7 @@ class NotificationTable extends Migration
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
             $table->foreignId('from');	
-            $table->foreignId('to');
+            $table->string('to');
             $table->string('subject');
             $table->string('description');
             $table->string('extra');

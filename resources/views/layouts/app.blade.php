@@ -22,6 +22,7 @@
 	<link href="{{asset('assets/css/app.css')}}" rel="stylesheet">
 	<script src="asset('assets/js/settings.js')}}"></script>
 
+	
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/base/jquery-ui.css">

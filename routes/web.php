@@ -44,10 +44,6 @@ Route::group(['middleware' => 'admin'],function(){
     /**Notification Controller */
     Route::get('/notifications', [NotificationController::class, 'add_form'])->name('notification.add_form');
     Route::get('/notifications/list', [NotificationController::class, 'lisiting_admin'])->name('notification.list');
-    Route::get('/notifications/user/{id}', [NotificationController::class, 'listing'])->name('notification.users');    
+    Route::get('/notifications/user/{id}', [NotificationController::class, 'listing'])->name('notification.users');
+    Route::post('/notifications/submit', [NotificationController::class, 'submit_notification'])->name('submit_notification');    
 });
-
-Route::middleware(['employee'])->group(function () {
-    Route::get('/logout-employee', [LoginController::class, 'employee_logout'])->name('employee.logout');
-});
-
