@@ -6,7 +6,7 @@
 				<ul class="sidebar-nav">
 					
 					<li class="sidebar-item active">
-						<a class="sidebar-link" href="{{route('home')}}">
+						<a class="sidebar-link" href="{{route('dashboard')}}">
 							<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboards</span>
 						</a>
 					</li>
