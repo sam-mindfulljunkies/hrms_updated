@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\ApiController;
+use App\Http\Controllers\Api\ApiController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,6 +17,8 @@ use App\Http\Controllers\API\ApiController;
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-Route::post('/login',[APIController::class,'login']);
-Route::post('/logout',[APIController::class,'logout']);
-Route::post('/register',[APIController::class,'register']);
+Route::post('/login',[ApiController::class,'login']);
+Route::post('/logout',[ApiController::class,'logout']);
+Route::post('/register',[ApiController::class,'register']);
+Route::post('/notifications',[ApiController::class,'notifications']);
+Route::post('/reports',[ApiController::class,'report']);

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Auth,Hash;
 use App\Models\User;
+use App\Models\Reports;
+use App\Models\Notifications;
 
 class ApiController extends Controller
 {
@@ -47,9 +49,40 @@ class ApiController extends Controller
             echo json_encode(['status'=>200,'msg'=>'success']);
             exit;
         }else{
-            echo json_encode(['status'=>412,'msg'=>'Opps Something went wrong !!!']);
+            echo json_encode(['status'=>412,'msg'=>'false']);
             exit;
         }
-        echo json_encode(['status'=>412,'msg'=>'Opps Something went wrong !!!']);
+        echo json_encode(['status'=>412,'msg'=>'false']);
+    }
+
+    public function report(Request $request){
+        if($request->date == null){
+            $date = date('Y-m-d');
+        }else{
+            $date = $request->date;
+        }
+        $report = Reports::where('created_at',$date)->get();
+        if(isset($report)){
+            echo json_encode(['status'=>200,'msg'=>'success','report_data'=>$report]);
+            exit;
+        }else{
+            echo json_encode(['status'=>412,'msg'=>'Sorry No Data Found']);
+            exit;
+        } 
+    }
+    public function notifications(Request $request){
+        if(isset($request->api_token)){
+            $user =  User::where('api_token',$request->api_token)->first(); 
+        }
+        if(isset($user)){
+            $notifications = Notifications::where('to',$user->id)->get();
+        }
+        if(isset($notifications)){
+            echo json_encode(['status'=>200,'msg'=>'success','report_data'=>$notifications]);
+            exit;
+        }else{
+            echo json_encode(['status'=>412,'msg'=>'something went wrong']);
+            exit;
+        }
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Notifications,Auth,App\Models\User;
-
+use DB;
 class NotificationController extends Controller
 {
     public function lisiting_admin(){
@@ -16,9 +16,10 @@ class NotificationController extends Controller
         // dd($notification);
         return view('notification.index',compact('notification'));
     }
-    public function lisiting(){
-        $notification =  Notifications::where('to',Auth::guard('admin')->user()->id);
-        return view('notification.index',compact('notification'));
+    public function listing(){
+        $user = Auth::guard('admin')->user()->id;
+        $notification =  Notifications::where('to',$user)->orderBY('id','desc')->get();
+        return view('notification.userindex',compact('notification'));
     }
 
     public function add_form(){

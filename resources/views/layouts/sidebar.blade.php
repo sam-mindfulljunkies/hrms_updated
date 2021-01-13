@@ -5,38 +5,38 @@
 				</a> 
 				<ul class="sidebar-nav">
 					
-					<li class="sidebar-item active">
+					<li @if(Route::currentRouteName() == 'dashboard') class="sidebar-item active" @elseclass="sidebar-item " @endif>
 						<a class="sidebar-link" href="{{route('dashboard')}}">
-							<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboards</span>
+							<i class="align-middle" data-feather="home"></i> <span class="align-middle">Dashboards</span>
 						</a>
 					</li>
 					@if(Auth::guard('admin')->user()->role_id == 1)
-					<li class="sidebar-item">
+					<li @if(Route::currentRouteName() == 'users') class="sidebar-item active" @elseclass="sidebar-item " @endif>
 						<a href="{{route('users')}}" class="sidebar-link">
-							<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">users</span>
+							<i class="align-middle" data-feather="users"></i> <span class="align-middle">users</span>
 						</a>
 					</li>
 
-					<li class="sidebar-item">
+					<li @if(Route::currentRouteName() == 'reports') class="sidebar-item active" @elseclass="sidebar-item " @endif>
 						<a href="{{route('reports')}}" class="sidebar-link">
-							<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Reports</span>
+							<i class="align-middle" data-feather="file-text"></i> <span class="align-middle">Reports</span>
 						</a>
 					</li>
-					<li class="sidebar-item">
+					<li @if(Route::currentRouteName() == 'notification.list') class="sidebar-item active" @elseclass="sidebar-item " @endif>
 						<a href="{{route('notification.list')}}" class="sidebar-link">
-							<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Notidication</span>
+							<i class="align-middle" data-feather="bell"></i> <span class="align-middle">Notidication</span>
 						</a>
 					</li>
 					@endif
 					@if(Auth::guard('admin')->user()->role_id == 2)
-					<li class="sidebar-item">
+					<li @if(Route::currentRouteName() == 'reports.users') class="sidebar-item active" @elseclass="sidebar-item " @endif>
 						<a href="{{route('reports.users',Auth::guard('admin')->user()->id)}}" class="sidebar-link">
-							<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Notidication</span>
+							<i class="align-middle" data-feather="file-text"></i> <span class="align-middle">Reports</span>
 						</a>
 					</li>
-					<li class="sidebar-item">
+					<li @if(Route::currentRouteName() == 'notification.users') class="sidebar-item active" @elseclass="sidebar-item " @endif>
 						<a href="{{route('notification.users',Auth::guard('admin')->user()->id)}}" class="sidebar-link">
-							<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Reports</span>
+							<i class="align-middle" data-feather="bell"></i> <span class="align-middle">Notifications</span>
 						</a>
 					</li>
 					@endif
