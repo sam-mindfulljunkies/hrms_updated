@@ -39,7 +39,13 @@
 							<i class="align-middle" data-feather="bell"></i> <span class="align-middle">Notifications</span>
 						</a>
 					</li>
+					<li @if(Route::currentRouteName() == 'leave.users') class="sidebar-item active" @elseclass="sidebar-item " @endif>
+						<a href="{{route('leave.users')}}" class="sidebar-link">
+							<i class="align-middle" data-feather="bell"></i> <span class="align-middle">Leave Management</span>
+						</a>
+					</li>
 					@endif
+
 
 					<!--<li class="sidebar-item">
 						<a data-target="#pages" data-toggle="collapse" class="sidebar-link collapsed">
