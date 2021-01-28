@@ -57,7 +57,7 @@
         </td>
 		<td>
             @if($val1->status > 2 || $val1->status == 0)
-			<a href class="btn btn-info">Cancel</a>
+			<a href="{{route('leave.cancel',['id'=>$val1->id])}}" class="btn btn-info">Cancel</a>
             @else
 			-
 			@endif

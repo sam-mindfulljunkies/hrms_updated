@@ -48,11 +48,10 @@ Route::group(['middleware' => 'admin'],function(){
     Route::get('/notifications/user/{id}', [NotificationController::class, 'listing'])->name('notification.users');
     Route::post('/notifications/submit', [NotificationController::class, 'submit_notification'])->name('submit_notification');    
 
-
     /** Leave management */
-    
     Route::get('/leaves', [LeaveController::class, 'index'])->name('leave.users');
     Route::get('/leaves/add', [LeaveController::class, 'add_form'])->name('leave.add_form');
     Route::post('/leave/submit', [LeaveController::class, 'submit_leave'])->name('submit_leave');   
+    Route::get('/leave/cancle/{id}', [LeaveController::class, 'cancel'])->name('leave.cancel');   
 
 });
