@@ -53,6 +53,6 @@ Route::group(['middleware' => 'admin'],function(){
     
     Route::get('/leaves', [LeaveController::class, 'index'])->name('leave.users');
     Route::get('/leaves/add', [LeaveController::class, 'add_form'])->name('leave.add_form');
-
+    Route::post('/leave/submit', [LeaveController::class, 'submit_leave'])->name('submit_leave');   
 
 });
