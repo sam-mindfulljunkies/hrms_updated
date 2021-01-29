@@ -77,7 +77,31 @@
                                             
                                             <div class="mb-3 col-md-4">
 												<label class="form-label" for="inputZip">Salary</label>
-												<input type="text" class="form-control" id="salary" name="salary">
+												<input type="aadhar" class="form-control" id="" name="salary">
+                                            </div>
+                                            <div class="mb-3 col-md-4">
+												<label class="form-label" for="inputZip">Pancard</label>
+												<input type="file" name="pancard" class="form-control">
+                                            </div>
+                                            <div class="mb-3 col-md-4">
+												<label class="form-label" for="inputZip">Electricity</label>
+												<input type="file" name="electricity" class="form-control">
+                                            </div>
+                                            <div class="mb-3 col-md-4">
+												<label class="form-label" for="inputZip">Certificate</label>
+												<input type="file" name="certificate" class="form-control">
+                                            </div>
+                                            <div class="mb-3 col-md-4">
+												<label class="form-label" for="inputZip">Election</label>
+												<input type="file" name="election" class="form-control">
+                                            </div>
+                                            <div class="mb-3 col-md-4">
+												<label class="form-label" for="inputZip">Licence</label>
+												<input type="file" name="licence" class="form-control" >
+                                            </div>
+                                            <div class="mb-3 col-md-4">
+												<label class="form-label" for="inputZip">Passport</label>
+												<input type="file" name="passport" class="form-control">
 											</div>
                                         </div>
                                         <input type="hidden" name="role_id" value="2">

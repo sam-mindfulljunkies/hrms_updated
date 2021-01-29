@@ -18,6 +18,7 @@ class UserController extends Controller
         return view('user.add_form');
     }
     public function submit_user(Request $request){
+        
         $user =  new User();
         $user->fname = $request->fname;
         $user->lname = $request->lname;
@@ -34,6 +35,34 @@ class UserController extends Controller
         $user->ifsc = $request->ifsc;
         $user->salary = $request->salary;
         $user->account_no = $request->account_no;
+        if($request->file('aadhar')){
+            $addhar = $file->getClientOriginalName();
+            $user->aadhar = $addhar; 
+        }
+        if($request->file('pancard')){
+            $pancard = $file->getClientOriginalName();
+            $user->pancard = $pancard;
+        }
+        if($request->file('election')){
+            $election = $file->getClientOriginalName();
+            $user->election = $election;
+        }
+        if($request->file('electricity')){
+            $electricity = $file->getClientOriginalName();
+            $user->electricity = $electricity;
+        }
+        if($request->file('certificate')){
+            $certificate = $file->getClientOriginalName();
+            $user->certificate = $certificate;
+        }
+        if($request->file('passport')){
+            $passport = $file->getClientOriginalName();
+            $user->passport = $passport;
+        }
+        if($request->file('licence')){
+            $licence = $file->getClientOriginalName();
+            $user->licence = $licence;
+        }
         $user->save();
         return json_encode(['status'=>200]);
     }
