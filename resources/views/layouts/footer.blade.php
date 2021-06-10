@@ -3,7 +3,7 @@
 					<div class="row text-muted">
 						<div class="col-6 text-left">
 							<p class="mb-0">
-								<a href="index.html" class="text-muted"><strong>MindfullJunkiesHrms</strong></a> &copy;
+								<a href="https://www.mindfulljunkies.com" target="_blank" class="text-muted"><strong>A Product of Mindfull Junkies</strong></a> &copy;
 							</p>
 						</div>
 						<!-- <div class="col-6 text-right">

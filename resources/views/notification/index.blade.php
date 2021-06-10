@@ -25,7 +25,7 @@
 							</div> -->
 							<div class="card">
 								<div class="card-header">
-									<h5 class="card-title">Users</h5>
+									<h5 class="card-title">Notifications</h5>
 									<a href="{{route('notification.add_form')}}" class="btn btn-sm btn-primary" style="float:right">+Add</a>
 									<!-- <h6 class="card-subtitle text-muted">Highly flexible tool that many advanced features to any HTML table. See official -->
 										<!-- documentation <a href="https://datatables.net/extensions/responsive/" target="_blank" -->
@@ -50,6 +50,7 @@
 												<td>{{$val->to}}</td>
 												<td>{{$val->date}}</td>
 												<td>{{$val->time}}</td>
+												
 											</tr>
 											@endforeach
 										</tbody>

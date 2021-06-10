@@ -3,7 +3,7 @@
 	<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3">Apply Leave</h1>
+					<h1 class="h3 mb-3">Add Report</h1>
 
 					<div class="row">
 						<div class="col-md-12">
@@ -83,12 +83,9 @@ $(document).ready(function () {
             description: {
                 required: true
             },
-            image:{
-                required:true
-            },
             hours:{
                 required:true,
-                digits:true,
+                number:true,
                 minlength:1,
             },
             start_time:{

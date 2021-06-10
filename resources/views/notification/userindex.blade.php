@@ -39,6 +39,7 @@
 												<th>Description</th>
 												<th>Date</th>
 												<th>Time</th>
+												<th>Dismiss</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -48,6 +49,7 @@
 												<td>{{$val->description}}</td>
 												<td>{{date('Y-m-d',strtotime($val->created_at))}}</td>
 												<td>{{date('H:i a',strtotime($val->created_at))}}</td>
+												<td><a href="{{route('dismiss',['id'=>$val->id])}}" class="btn btn-danger">Dismiss</a></td>
 											</tr>
 											@endforeach
 										</tbody>

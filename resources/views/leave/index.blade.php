@@ -11,7 +11,7 @@
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
-									<h5 class="card-title">Leaves</h5>
+									<h5 class="card-title">Apply Leaves</h5>
 									<a href="{{route('leave.add_form')}}" class="btn btn-primary" style="float:right">Add new</a>
 								</div>
 

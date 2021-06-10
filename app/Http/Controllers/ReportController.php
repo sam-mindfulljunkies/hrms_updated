@@ -51,7 +51,9 @@ class ReportController extends Controller
         $report->end_time = $request->end_time;
         $report->hours = $request->hours;
         $report->project = $request->project;
-        $report->image = $filename;
+        if($request->file('image')){
+            $report->image = $filename;
+        }
         $report->time = date('H:i:s');
         $report->user_id = Auth::guard('admin')->user()->id;
         $report->description = $request->description;

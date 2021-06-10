@@ -22,12 +22,13 @@
 	<link href="{{asset('assets/css/app.css')}}" rel="stylesheet">
 	<!-- <script src="asset('assets/js/settings.js')}}"></script> -->
 
-	
+
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/base/jquery-ui.css">
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120946860-10"></script>
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+{{--	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>--}}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -36,7 +37,7 @@
   gtag('config', 'UA-120946860-10', { 'anonymize_ip': true });
 </script></head> -->
 <!--
-  HOW TO USE: 
+  HOW TO USE:
   data-theme: default (default), dark, light
   data-layout: fluid (default), boxed
   data-sidebar: left (default), right
@@ -277,7 +278,7 @@
 	</script>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function(event) { 
+  document.addEventListener("DOMContentLoaded", function(event) {
     setTimeout(function(){
       if(localStorage.getItem('popState') !== 'shown'){
         window.notyf.open({

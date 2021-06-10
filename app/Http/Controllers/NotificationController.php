@@ -18,7 +18,7 @@ class NotificationController extends Controller
     }
     public function listing(){
         $user = Auth::guard('admin')->user()->id;
-        $notification =  Notifications::where('to',$user)->orderBY('id','desc')->get();
+        $notification =  Notifications::where('hide',0)->where('to',$user)->orderBY('id','desc')->get();
         return view('notification.userindex',compact('notification'));
     }
 
@@ -29,6 +29,14 @@ class NotificationController extends Controller
     public function index(){
         return error(404);
     }
+
+    public function hide($id){
+        $notification =  Notifications::find($id);
+        $notification->hide = 1;
+        $notification->update();
+        return redirect()->route('notification.users',['id'=>Auth::guard('admin')->user()->id]);
+    }
+
     public function submit_notification(Request $request){
         $users = $request->to;
         $to = implode(",",$users);
