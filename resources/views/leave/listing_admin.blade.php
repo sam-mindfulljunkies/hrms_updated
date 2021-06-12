@@ -172,6 +172,7 @@
                         dangerMode: true,
                     }).then(function(isConfirm) {
                         if (isConfirm) {
+
                             $.ajax({
                                 url:"/leave/approve/"+id,
                                 method:'GET',
