@@ -12,7 +12,7 @@ use App\Models\Leaves;
 
 use App\Models\User;
 
-use Auth,URL;
+use Auth,URL,Session;
 
 
 
@@ -81,16 +81,20 @@ class LeaveController extends Controller
         $leave->type = $request->type;
 
         if(!$request->is_first_half){
-
             $leave->is_first_half = 0;
+        }else{
+            $leave->is_first_half = $request->is_first_half;
+        }
+        if($leave->save()){
+            Session::flash('success', 'Leave apply success');
+            return redirect()->route('leave.users');
 
         }else{
 
-            $leave->is_first_half = $request->is_first_half;
+            Session::flash('success', 'Leave apply Failed');
+            return redirect()->route('leave.users');
 
         }
-
-        $leave->save();
 
     }
 

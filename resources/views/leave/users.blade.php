@@ -28,6 +28,7 @@
 								</div>
 							</div>  -->
 							<div class="card">
+
 								<div class="card-header">
                                     <h3 class="card-title">Reports</h3>
                                     <a href="{{route('reports.addforms')}}" class="btn btn-primary" style="float:right;margin-top:-22px;">+ Add</a>
@@ -38,7 +39,7 @@
                                 @endif
                                 @if(isset($report))
                                     <table id="datatables-column-search-text-inputs" class="table table-strippet" style="width:100%;">
-                                    <thead>    
+                                    <thead>
                                     <tr>
                                             <th>User</th>
                                             <th>Date</th>
@@ -84,10 +85,10 @@
 			</main>
 			@endsection
 @push('script')
-<script> 
+<script>
 $(".class-image").on('click',function(){
     var src = $(this).attr('src');
     window.open(src);
 })
-    </script> 
+    </script>
     @endpush

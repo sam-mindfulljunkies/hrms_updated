@@ -10,14 +10,22 @@
 					<div class="row">
 						<div class="col-12">
 							<div class="card">
+
 								<div class="card-header">
 									<h5 class="card-title">Apply Leaves</h5>
 									<a href="{{route('leave.add_form')}}" class="btn btn-primary" style="float:right">Add new</a>
 								</div>
 
 								<div class="card-body classrelaced">
+                                    @if(Session::has('success'))
+                                        <div class="alert alert-success" style="padding: 12px;">{{Session::get('success')}}</div>
+                                    @endif
+                                    @if(Session::has('error'))
+                                        <div class="alert alert-error" style="padding: 12px;">{{Session::get('error')}}</div>
+                                    @endif
+
 								<table id="datatables-reponsive" class="table table-strippet" style="width:100%;">
-<thead>    
+<thead>
 <tr>
         <th>#</th>
         <th>FromDate</th>
