@@ -49,24 +49,28 @@
                                                 <label class="form-label" for="inputEmail4">Type</label>
 
                                                 <select name="type" class="form-control" id="half_type">
+                                                    <option>Select Leave</option>
+                                                    @foreach($leave_type as $data)
 
-                                                    <option value="1">Half day</option>
+                                                    <option value="{{$data->id}}">{{$data->name}}</option>
 
-                                                    <option value="2">Full Day</option>
+{{--                                                    <option value="2">Full Day</option>--}}
 
+{{--                                                    <option value="3">Quaterly</option>--}}
+                                                    @endforeach
                                                 </select>
 
                                             </div>
 
                                             <div class="mb-3 col-md-3">
 
-                                                <label class="form-label">Select Halfday Type</label>
+                                                <label class="form-label">Select Halfday/Quaterly Type</label>
 
-                                                <select class="form-control" id="half_id" name="is_first_half">
+                                                <select class="form-control" id="half_id" name="leave_cir_id">
 
-                                                    <option value="1">First Half</option>
+{{--                                                    <option value="1">First Half</option>--}}
 
-                                                    <option value="2">Second Half</option>
+{{--                                                    <option value="2">Second Half</option>--}}
 
                                                 </select>
 
@@ -96,7 +100,7 @@
 
                     </div>
 
-                    <div id="imagePreview"></div> 
+                    <div id="imagePreview"></div>
 
                 </div>
 
@@ -136,17 +140,30 @@ $(document).ready(function(){
 
     $("#half_type").on('change',function(){
 
-        var half = $(this).val();
+        var leave_type_id = $(this).val();
+        alert(leave_type_id);
 
-        debugger;
 
-        if(half == 1){
+        if(leave_type_id == 1){
 
-            $("#half_id").prop('disabled',false);
+            $("#half_id").prop('disabled',true);
 
         }else{
 
-            $("#half_id").prop('disabled',true);
+            $("#half_id").prop('disabled',false);
+            $.ajax({
+                url: "{{ url('/leaves/leave_sub_type/') }}"+"/"+leave_type_id,
+                method: "POST",
+                data:{leave_type_id:leave_type_id},
+                success:function(data){
+                    $.each(data.data,function(key,value){
+                        // console.log(value.id);
+                        // debugger;
+                       $('#half_id').append('<option value=' + value.id + '>' + value.name + '</option>');
+                    })
+                }
+
+            });
 
         }
 
@@ -160,9 +177,15 @@ $(document).ready(function () {
 
     var url = "{{route('submit_leave')}}";
 
-    $('#leave_register').validate({ 
+    $('#leave_register').validate({
 
         rules: {
+            from_date:{
+                required:true,
+            },
+            to_date:{
+                required:true,
+            },
 
             description: {
 
@@ -270,69 +293,69 @@ $(document).ready(function () {
 
 
 
-function fileValidation() { 
+function fileValidation() {
 
-            var fileInput =  
+            var fileInput =
 
-                document.getElementById('file'); 
+                document.getElementById('file');
 
-              
 
-            var filePath = fileInput.value; 
 
-          
+            var filePath = fileInput.value;
 
-            // Allowing file type 
 
-            var allowedExtensions =  
 
-                    /(\.jpg|\.jpeg|\.png|\.gif)$/i; 
+            // Allowing file type
 
-              
+            var allowedExtensions =
 
-            if (!allowedExtensions.exec(filePath)) { 
+                    /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+
+
+
+            if (!allowedExtensions.exec(filePath)) {
 
                 $("<span class='fileuploaderror' style='color:red;'>Please select valid Image</span>").insertAfter('#file');
 
-                fileInput.value = ''; 
+                fileInput.value = '';
 
-                return false; 
+                return false;
 
-            }  
+            }
 
-            else  
+            else
 
-            { 
+            {
 
                 $(".fileuploaderror").html('');
 
-                // Image preview 
+                // Image preview
 
-                if (fileInput.files && fileInput.files[0]) { 
+                if (fileInput.files && fileInput.files[0]) {
 
-                    var reader = new FileReader(); 
+                    var reader = new FileReader();
 
-                    reader.onload = function(e) { 
+                    reader.onload = function(e) {
 
-                        document.getElementById( 
+                        document.getElementById(
 
-                            'imagePreview').innerHTML =  
+                            'imagePreview').innerHTML =
 
-                            '<img src="' + e.target.result 
+                            '<img src="' + e.target.result
 
-                            + '"/>'; 
+                            + '"/>';
 
-                    }; 
+                    };
 
-                      
 
-                    reader.readAsDataURL(fileInput.files[0]); 
 
-                } 
+                    reader.readAsDataURL(fileInput.files[0]);
 
-            } 
+                }
 
-        } 
+            }
+
+        }
 
 </script>
 

@@ -37,19 +37,13 @@
     </tr>
 </thead>
     <tbody>
-    @foreach(\App\Models\Leaves::all() as $val1)
+    @foreach($leaves as $val1)
         <tr>
         <td>{{$val1->id}}</td>
         <td>{{$val1->from_date}}</td>
         <td>{{$val1->to_date}}</td>
         <td>
-            @if($val1->is_first_half == 1)
-            first_half
-            @elseif($val1->is_first_half == 2)
-            second_half
-            @else
-            Full day
-            @endif
+           {{$val1->DayPart}} / {{$val1->subType}}
         </td>
         <td>{{$val1->description}}</td>
         <td>
@@ -65,7 +59,7 @@
         </td>
 		<td>
             @if($val1->status > 2 || $val1->status == 0)
-			<a href="{{route('leave.cancel',['id'=>$val1->id])}}" class="btn btn-info">Cancel</a>
+			<a href="javascript:;" data-id="{{$val1->id}}" class="btn btn-info btnCancle">Cancel</a>
             @else
 			-
 			@endif
@@ -86,5 +80,44 @@
 
 			@push('script')
 			<script>
+                $(".btnCancle").on('click',function (){
+                    var id = $(this).data('id');
+                    swal({
+                        title: "Are you sure?",
+                        text: "Cancle Leave request",
+                        icon: "warning",
+                        buttons: [
+                            'No, cancel it!',
+                            'Yes, I am sure!'
+                        ],
+                        dangerMode: true,
+                    }).then(function(isConfirm) {
+                        if (isConfirm) {
+                            $.ajax({
+                                url:'{{url("/leave/cancle/")}}/'+id,
+                                method:'GET',
+                                cache:false,
+                                processData:false,
+                                contentType:false,
+                                success:function (res){
+                                    // location.reload();
+                                    if(res.status == 200){
+                                        swal({
+                                            title: 'Successfully Cancle Leave',
+                                            text: 'Successfully changed status',
+                                            icon: 'success',
+                                        }).then(function (){
+                                            location.reload();
+                                        })
+
+                                    }
+
+                                }
+                            });
+                        } else {
+
+                        }
+                    })
+                });
 			</script>
 			@endpush

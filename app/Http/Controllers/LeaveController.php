@@ -13,7 +13,8 @@ use App\Models\Leaves;
 use App\Models\User;
 
 use Auth,URL,Session;
-
+Use App\Models\LeaveTypes;
+Use App\Models\LeaveCircles;
 
 
 class LeaveController extends Controller
@@ -21,8 +22,13 @@ class LeaveController extends Controller
 {
 
     public function index(){
+       $leaves = Leaves::all();
 
-        return view('leave.index');
+       foreach($leaves as $val){
+           $val->DayPart = LeaveTypes::where('id',$val->type)->pluck('name')->first();;
+           $val->subType = LeaveCircles::where('id',$val->leave_cir_id)->pluck('name')->first();;
+       }
+        return view('leave.index',compact('leaves'));
 
     }
 
@@ -33,8 +39,8 @@ class LeaveController extends Controller
     }
 
     public function add_form(){
-
-        return view('leave.add_form');
+        $leave_type = LeaveTypes::all();
+        return view('leave.add_form',compact('leave_type'));
 
     }
 
@@ -80,10 +86,12 @@ class LeaveController extends Controller
 
         $leave->type = $request->type;
 
-        if(!$request->is_first_half){
-            $leave->is_first_half = 0;
+        $leave->description = $request->description;
+
+        if(!$request->leave_cir_id){
+            $leave->leave_cir_id = 0;
         }else{
-            $leave->is_first_half = $request->is_first_half;
+            $leave->leave_cir_id = $request->leave_cir_id;
         }
         if($leave->save()){
             Session::flash('success', 'Leave apply success');
@@ -99,11 +107,9 @@ class LeaveController extends Controller
     }
 
     public function cancel($id){
-
         $leave = Leaves::find($id);
         $leave->delete();
-        return redirect()->route('leave.users');
-
+        return response()->json(['status'=>200,'success'=>true]);
     }
 
     public function approve($id){
@@ -123,6 +129,18 @@ class LeaveController extends Controller
         $leaves = Leaves::where('status',0)->get();
         return view('leave.listing_admin',compact('leaves'));
     }
+
+
+    public function leave_sub_type($id){
+//        echo "hello";
+        $request = LeaveCircles::where('laeve_type_id',$id)->get();
+//        dd($request)
+//        $leave_sub_type = LeaveCircles::where('laeve_type_id',$request->$id)->get();
+        return response()->json(['status'=>200,'success'=>true,'data'=>$request]);
+    }
+
+
+
 
 }
 

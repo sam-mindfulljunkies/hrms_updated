@@ -48,7 +48,7 @@ Route::group(['middleware' => 'admin'],function(){
 
     Route::get('/logout', [LoginController::class, 'admin_logout'])->name('admin.logout');
 
-    
+
 
     /**Report Controller */
 
@@ -64,28 +64,28 @@ Route::group(['middleware' => 'admin'],function(){
 
     Route::post('/report/submit_report/', [ReportController::class, 'submit_report'])->name('submit_report');
 
-    
 
-    
+
+
 
     /**User Controller */
 
     Route::get('/users/add_form/', [UserController::class, 'add_form'])->name('user.add_form');
 
-    Route::get('/users', [UserController::class, 'index'])->name('users');        
+    Route::get('/users', [UserController::class, 'index'])->name('users');
 
-    Route::post('/users/submit_user', [UserController::class, 'submit_user'])->name('submit_user');        
+    Route::post('/users/submit_user', [UserController::class, 'submit_user'])->name('submit_user');
 
-    Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('edit_user');        
+    Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('edit_user');
 
-    Route::post('/users/update/', [UserController::class, 'update'])->name('update_user');        
+    Route::post('/users/update/', [UserController::class, 'update'])->name('update_user');
 
     Route::get('/users/delete/{id}', [UserController::class, 'delete'])->name('delete_user');
 
-    Route::get('/users/delete/{id}', [UserController::class, 'delete'])->name('delete_user');        
+    Route::get('/users/delete/{id}', [UserController::class, 'delete'])->name('delete_user');
 
-    Route::get('/myprofile', [UserController::class, 'user_profile'])->name('user_profile');   
-    
+    Route::get('/myprofile', [UserController::class, 'user_profile'])->name('user_profile');
+
 
     /**Notification Controller */
 
@@ -95,8 +95,8 @@ Route::group(['middleware' => 'admin'],function(){
 
     Route::get('/notifications/user/{id}', [NotificationController::class, 'listing'])->name('notification.users');
 
-    Route::post('/notifications/submit', [NotificationController::class, 'submit_notification'])->name('submit_notification');    
-    Route::get('/notification/hide/{id}', [NotificationController::class, 'hide'])->name('dismiss');    
+    Route::post('/notifications/submit', [NotificationController::class, 'submit_notification'])->name('submit_notification');
+    Route::get('/notification/hide/{id}', [NotificationController::class, 'hide'])->name('dismiss');
 
 
 
@@ -106,14 +106,18 @@ Route::group(['middleware' => 'admin'],function(){
 
     Route::get('/leaves/add', [LeaveController::class, 'add_form'])->name('leave.add_form');
 
-    Route::post('/leave/submit', [LeaveController::class, 'submit_leave'])->name('submit_leave');   
+    Route::post('/leave/submit', [LeaveController::class, 'submit_leave'])->name('submit_leave');
 
-    Route::get('/leave/cancle/{id}', [LeaveController::class, 'cancel'])->name('leave.cancel');   
-    
+    Route::get('/leave/cancle/{id}', [LeaveController::class, 'cancel'])->name('leave.cancel');
+
+    /** ajax route**/
+
+    Route::post('/leaves/leave_sub_type/{id}', [LeaveController::class, 'leave_sub_type'])->name('leave.leave_sub_type');
+
     /**admin**/
-    Route::get('/leave/approve/{id}', [LeaveController::class, 'approve'])->name('leave.approved');   
-    Route::get('/leave/reject/{id}', [LeaveController::class, 'reject'])->name('leave.reject');   
-    Route::get('/leaves/admin_listing',[LeaveController::class, 'listing_Admin'])->name('listing.leave');   
+    Route::get('/leave/approve/{id}', [LeaveController::class, 'approve'])->name('leave.approved');
+    Route::get('/leave/reject/{id}', [LeaveController::class, 'reject'])->name('leave.reject');
+    Route::get('/leaves/admin_listing',[LeaveController::class, 'listing_Admin'])->name('listing.leave');
 
 
 });
