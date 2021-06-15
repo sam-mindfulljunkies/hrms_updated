@@ -30,7 +30,7 @@
 
                                                 <label class="form-label" for="inputEmail4">From Date</label>
 
-                                                <input type="date" name="from_date" class="form-control" id="from_date">
+                                                <input type="date" name="from_date" class="form-control txtDate" id="from_date">
 
                                             </div>
 
@@ -38,7 +38,7 @@
 
                                                 <label class="form-label" for="inputEmail4">To Date</label>
 
-                                                <input type="date" name="to_date" class="form-control" id="to_date">
+                                                <input type="date" name="to_date" class="form-control txtDate" id="to_date">
 
                                             </div>
 
@@ -169,6 +169,29 @@ $(document).ready(function(){
 
     });
 
+
+
+    //disable pre date
+
+    $(function(){
+        var dtToday = new Date();
+
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if(month < 10)
+            month = '0' + month.toString();
+        if(day < 10)
+            day = '0' + day.toString();
+
+        var maxDate = year + '-' + month + '-' + day;
+
+        // or instead:
+        // var maxDate = dtToday.toISOString().substr(0, 10);
+
+
+        $('.txtDate').attr('min', maxDate);
+    });
 });
 
 
@@ -177,7 +200,7 @@ $(document).ready(function () {
 
     var url = "{{route('submit_leave')}}";
 
-    $('#leave_register').validate({
+    $('#report_register').validate({
 
         rules: {
             from_date:{
@@ -192,40 +215,13 @@ $(document).ready(function () {
                 required: true
 
             },
-
-            image:{
-
-                required:true
-
-            },
-
-            hours:{
-
+            type:{
                 required:true,
-
-                digits:true,
-
-                minlength:1,
-
             },
 
-            start_time:{
 
-                required:true
 
-            },
 
-            end_time:{
-
-                required:true
-
-            },
-
-            project:{
-
-                required:true
-
-            }
 
         },
 
