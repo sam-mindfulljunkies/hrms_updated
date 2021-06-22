@@ -120,6 +120,10 @@ Route::group(['middleware' => 'admin'],function(){
     Route::get('/leaves/admin_listing',[LeaveController::class, 'listing_Admin'])->name('listing.leave');
 
 
+    /**cron url**/
+
+    Route::get('/cron/',[\App\Http\Controllers\CronController::class,'index'])->name('cron');
+
 });
 
 Route::get('/clear-cache', function() {
