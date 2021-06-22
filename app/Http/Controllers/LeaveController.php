@@ -88,10 +88,59 @@ class LeaveController extends Controller
 
         $leave->description = $request->description;
 
+
+
+        //leave differnace
+
+        $start_date = strtotime($request->from_date);
+        $end_date = strtotime($request->to_date);
+
+        //apply leave hours
+        $diifernce_date = ($end_date - $start_date);
+
+        //convert hours to date
+        $days = $diifernce_date / (60 * 60 * 24);
+
+
+        // working hours convert to strtotime
+        $working_hours = 8;
+
+
+        //apply leave hours
+        $apply_leave_hours = $days * $working_hours;
+        $leave->hours = $apply_leave_hours;
+        $leave->days = $days;
+        //pending leave hours
+        $pending_leave = $working_hours - $diifernce_date;
+
+
+
+
+//        dd($diifernce_date);
+
+
+
         if(!$request->leave_cir_id){
             $leave->leave_cir_id = 0;
+            if($diifernce_date == 0){
+                $apply_leave_hours = $working_hours;
+                $days = 1;
+                $leave->hours = $apply_leave_hours;
+                $leave->days = $days;
+
+            }
+
         }else{
             $leave->leave_cir_id = $request->leave_cir_id;
+            if($diifernce_date == 0 ){
+                $hours = LeaveTypes::where('id',$request->type)->first();
+                $apply_leave_hours = $hours['hours'];
+                $days = 0;
+                $leave->hours = $apply_leave_hours;
+                $leave->days = $days;
+
+            }
+
         }
         if($leave->save()){
             Session::flash('success', 'Leave apply success');

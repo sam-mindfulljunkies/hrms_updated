@@ -141,7 +141,7 @@ $(document).ready(function(){
     $("#half_type").on('change',function(){
 
         var leave_type_id = $(this).val();
-        alert(leave_type_id);
+        // alert(leave_type_id);
 
 
         if(leave_type_id == 1){
