@@ -536,11 +536,11 @@ $(document).ready(function() {
                 contentType: false,
                 success: function(response) {
                     console.log(response);
-                    if(response.status == 400){
+                    if(response.status == 200){
                         $.each(response,function(key,value){
                             console.log("=======>",key)
                         })
-                    }else{
+                    }
                         swal({
                         position: 'top-end',
                         icon: 'success',
@@ -550,7 +550,6 @@ $(document).ready(function() {
                     })
                     $("form")[0].reset();
 
-                    }
                 }
             })
         }
