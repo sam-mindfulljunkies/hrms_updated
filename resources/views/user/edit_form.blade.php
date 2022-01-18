@@ -162,7 +162,7 @@ $(document).ready(function () {
                 cache:false,
                 contentType:false,
           		success:function(response){
-            Swal.fire({
+            Swal({
                     position: 'top-end',
                     icon: 'success',
                     title: 'Successfully Updated`',

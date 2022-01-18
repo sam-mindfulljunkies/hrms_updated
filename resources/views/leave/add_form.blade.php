@@ -261,7 +261,7 @@ $(document).ready(function () {
 
                 success:function(response){
 
-            Swal.fire({
+            Swal({
 
                     position: 'top-end',
 

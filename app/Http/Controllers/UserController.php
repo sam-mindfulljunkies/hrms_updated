@@ -11,7 +11,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Leaves;
 
-use Hash,Auth;
+
+use Hash,Auth,Validator;
 
 
 
@@ -21,24 +22,27 @@ class UserController extends Controller
 
     public function index(){
         return view('user.index');
-
     }
 
     public function listing(){
-
         return view('user.listing');
-
     }
 
     public function add_form(){
-
         return view('user.add_form');
-
     }
 
     public function submit_user(Request $request){
 
         
+        $validator = Validator::make($request->only(['username', 'email']), [
+            'username' => 'required|min:6|max:255|unique:users,username',
+            'email' => 'required|min:6|max:255|unique:users,email'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->error(),200);
+        }
 
         $user =  new User();
 
@@ -73,71 +77,47 @@ class UserController extends Controller
         $user->account_no = $request->account_no;
 
         if($request->file('aadhar')){
-
             $addhar = $file->getClientOriginalName();
-
             $user->aadhar = $addhar; 
 
         }
 
         if($request->file('pancard')){
-
             $pancard = $file->getClientOriginalName();
-
             $user->pancard = $pancard;
-
         }
 
         if($request->file('election')){
-
             $election = $file->getClientOriginalName();
-
             $user->election = $election;
-
         }
 
         if($request->file('electricity')){
-
             $electricity = $file->getClientOriginalName();
-
             $user->electricity = $electricity;
-
         }
 
         if($request->file('certificate')){
-
             $certificate = $file->getClientOriginalName();
-
             $user->certificate = $certificate;
-
         }
 
         if($request->file('passport')){
-
             $passport = $file->getClientOriginalName();
-
             $user->passport = $passport;
-
         }
 
         if($request->file('licence')){
-
             $licence = $file->getClientOriginalName();
-
             $user->licence = $licence;
-
         }
-
         $user->save();
-
         return json_encode(['status'=>200]);
 
     }
 
     public function edit($user_id){
-
         $user =  User::find($user_id);
-
         return view('user.edit_form',compact('user'));
 
     }
