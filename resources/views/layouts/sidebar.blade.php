@@ -4,7 +4,7 @@
 
 				<a class="sidebar-brand" href="index.html">
 
-					<span class="align-middle">test HRMS</span>
+					<span class="align-middle">MindfullJunkies HRMS</span>
 
 				</a> 
 
