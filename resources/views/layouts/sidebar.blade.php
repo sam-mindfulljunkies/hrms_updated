@@ -1,17 +1,9 @@
 <nav id="sidebar" class="sidebar">
-
 			<div class="sidebar-content js-simplebar">
-
 				<a class="sidebar-brand" href="index.html">
-
 					<span class="align-middle">MindfullJunkies HRMS</span>
-
 				</a> 
-
 				<ul class="sidebar-nav">
-
-					
-
 					<li @if(Route::currentRouteName() == 'dashboard') class="sidebar-item active" @elseclass="sidebar-item " @endif>
 
 						<a class="sidebar-link" href="{{route('dashboard')}}">
