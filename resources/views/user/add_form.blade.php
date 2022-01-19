@@ -13,7 +13,7 @@
                         <h6 class="card-subtitle text-muted">Bootstrap column layout.</h6>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{route('submit_user')}}" id="user_register">
+                        <form method="post" action="javascript:;" id="user_register" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="mb-3 col-md-4 form-group">
                                     <label class="form-label" for="inputEmail4">Fname</label>
@@ -61,7 +61,7 @@
                                     <label class="form-label" for="inputState">pincode</label>
                                     <input type="text" class="form-control" id="pincode" name="pincode">
                                 </div>
-                               
+
                                 <div class="mb-3 col-md-4 form-group">
                                     <label class="form-label" for="inputZip">IFSC</label>
                                     <input type="text" class="form-control" name="ifsc" id="ifsc">
@@ -412,13 +412,6 @@ $.ajaxSetup({
     }
 });
 
-// $(document).ready(function(){
-//     $(".btnsub").on('click',function(){
-//         $(this).submit();
-//     });
-// });
-
-
 $(document).ready(function() {
     var url = "{{route('submit_user')}}";
     $('#user_register').validate({
@@ -430,7 +423,7 @@ $(document).ready(function() {
                 required: true,
             },
             contact: {
-                required:true,
+                required: true,
                 digits: true,
                 maxlength: 10
             },
@@ -448,24 +441,24 @@ $(document).ready(function() {
             salary: {
                 digits: true,
             },
-         
+
             account_no: {
                 digits: true
             },
-            certificate:{
+            certificate: {
                 required: true,
                 extension: "png|jpg|pdf"
             },
-            pancard:{
+            pancard: {
                 required: true,
                 extension: "png|jpg|pdf"
             },
-            electricity:{
+            electricity: {
                 required: true,
                 extension: "png|jpg|pdf"
             },
-            pincode:{
-                maxlength:6
+            pincode: {
+                maxlength: 6
             }
         },
         messages: {
@@ -476,9 +469,9 @@ $(document).ready(function() {
                 required: "Lastname should be required",
             },
             contact: {
-                required:"Contact should be required",
+                required: "Contact should be required",
                 digits: "Only Numbers allowed",
-                maxlength:"10 Digits are allowd only"
+                maxlength: "10 Digits are allowd only"
             },
             username: {
                 required: "Username should be required",
@@ -497,21 +490,21 @@ $(document).ready(function() {
             account_no: {
                 digits: "Only Number should be required"
             },
-            certificate:{
+            certificate: {
                 required: "Certificate for 10 or 12 th uploadation required",
                 extension: "PNG JPG and PDF are only allowed"
             },
-            pancard:{
+            pancard: {
                 required: "PAN card uploadation required",
                 extension: "PNG JPG and PDF are only allowed"
             },
-            electricity:{
-                required: "Electricty bill uploadation required", 
+            electricity: {
+                required: "Electricty bill uploadation required",
                 extension: "PNG JPG and PDF are only allowed"
             },
-            
-            pincode:{
-                maxlength:"Max Length for  pincode will be 6 digits",
+
+            pincode: {
+                maxlength: "Max Length for  pincode will be 6 digits",
             }
         },
         errorElement: 'span',
@@ -531,26 +524,39 @@ $(document).ready(function() {
                 url: url,
                 type: 'POST',
                 data: formdata,
-    contentType:false,
-    processData:false,
-    cache:false,
-    dataType:"json",
+                processData:false,
+                cache:false,
+                contentType:false,
                 success: function(response) {
-                    console.log(response);
-                    if(response.status == 200){
-                        $.each(response,function(key,value){
-                            console.log("=======>",key)
-                        })
-                    }
+                    if (response.status == 200) {
                         swal({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Successfully Registered',
-                        showConfirmButton: false,
-                        timer: 2000
-                    })
-                    $("form")[0].reset();
-
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Successfully Registered',
+                            showConfirmButton: false,
+                            timer: 2000
+                        })
+                        $("form")[0].reset();
+                    } else {
+                        if (response.error.email) {
+                            swal({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: response.error.email[0],
+                                showConfirmButton: false,
+                                timer: 2000
+                            })
+                        }
+                        if (response.error.username) {
+                            swal({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: response.error.username[0],
+                                showConfirmButton: false,
+                                timer: 2000
+                            })
+                        }
+                    }
                 }
             })
         }

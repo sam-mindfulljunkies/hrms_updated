@@ -51,5 +51,5 @@ $app->singleton(
 | from the actual running of the application and sending responses.
 |
 */
-
+error_reporting(E_ALL ^ E_NOTICE);
 return $app;

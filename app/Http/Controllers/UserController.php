@@ -34,14 +34,16 @@ class UserController extends Controller
 
     public function submit_user(Request $request){
 
-        
+        dd($request->all());
+
         $validator = Validator::make($request->only(['username', 'email']), [
-            'username' => 'required|min:6|max:255|unique:users,username',
-            'email' => 'required|min:6|max:255|unique:users,email'
+            'username' => 'required|unique:users,username',
+            'email' => 'required|unique:users,email'
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->error(),200);
+            return back()->with(['error',$validator->errors()]);
+            return response()->json(['status'=>400]);
         }
 
         $user =  new User();
@@ -137,7 +139,8 @@ class UserController extends Controller
         }
 
         $user->save();
-        return json_encode(['status'=>200]);
+        return response()->json(['status'=>200]);
+
 
     }
 
