@@ -34,7 +34,7 @@ class UserController extends Controller
 
     public function submit_user(Request $request){
 
-        dd($request->all());
+        // dd($request->all());
 
         $validator = Validator::make($request->only(['username', 'email']), [
             'username' => 'required|unique:users,username',
@@ -42,8 +42,8 @@ class UserController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return back()->with(['error',$validator->errors()]);
-            return response()->json(['status'=>400]);
+            // return back()->with([]);
+            return response()->json(['status'=>400,'error'=>$validator->errors()]);
         }
 
         $user =  new User();

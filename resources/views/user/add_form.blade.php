@@ -536,12 +536,13 @@ $(document).ready(function() {
                             showConfirmButton: false,
                             timer: 2000
                         })
-                        $("form")[0].reset();
+                        $("form#user_register")[0].reset();
+                        window.location.href=
                     } else {
                         if (response.error.email) {
                             swal({
                                 position: 'top-end',
-                                icon: 'success',
+                                icon: 'error',
                                 title: response.error.email[0],
                                 showConfirmButton: false,
                                 timer: 2000
@@ -550,7 +551,7 @@ $(document).ready(function() {
                         if (response.error.username) {
                             swal({
                                 position: 'top-end',
-                                icon: 'success',
+                                icon: 'error',
                                 title: response.error.username[0],
                                 showConfirmButton: false,
                                 timer: 2000
