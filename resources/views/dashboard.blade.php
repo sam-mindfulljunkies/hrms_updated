@@ -1,5 +1,10 @@
 @extends('layouts.app')
 @section('content')
+<style>
+	.mt-3{
+		margin-top:3%;
+	}
+	</style>
 <main class="content">
 				<div class="container-fluid p-0">
 
@@ -7,7 +12,26 @@
 						<div class="col-auto d-none d-sm-block">
 							<h3><strong>Analytics</strong> Dashboard</h3>
 						</div>
+						<!---Notification-->
+						<!-- <div class="col-auto ml-auto text-right mt-n1"> -->
+						@if(Auth::guard('admin')->user()->role_id != 1)
+						@if(Auth::guard('admin')->user()->pancard_verify !=1)
+						<div class="alert alert-danger p-3 mt-3">Please update Pancard documentation as your profile detail was incomplete<a style="right: 2% !important;position: absolute;margin-top: 0.1%;" href=""><i class="fa fa-times" aria-hidden="true"></i></a>
+</div>
+@endif
+@if(Auth::guard('admin')->user()->aadhar_verify !=1)
+						<div class="alert alert-danger p-3 mt-3">Please update Pancard as your profile detail was incomplete <a style="right: 2% !important;position: absolute;margin-top: 0.1%;" href=""><i class="fa fa-times" aria-hidden="true"></i></a>
+</div>
+@endif
+@if(Auth::guard('admin')->user()->certificate_verify !=1)
+						<div class="alert alert-danger p-3 mt-3">Please update Certification as your profile detail was incomplete<a style="right: 2% !important;position: absolute;margin-top: 0.1%;" href=""><i class="fa fa-times" aria-hidden="true"></i></a>
+</div>
+@endif
+@endif
+<div class="alert alert-primary p-3">To Update the Documentation Please goto My profile section from sidebar<a style="right: 2% !important;position: absolute;margin-top: 0.1%;" href=""><i class="fa fa-times" aria-hidden="true"></i></a>
+</div>
 
+							<!-- </div> -->
 						<div class="col-auto ml-auto text-right mt-n1">
 							<nav aria-label="breadcrumb">
 								<ol class="breadcrumb bg-transparent p-0 mt-1 mb-0">
@@ -19,10 +43,10 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-xl-6 col-xxl-5 d-flex">
-							<div class="w-100">
+						<div class="col-md-12">
+							<div class="">
 								<div class="row">
-									<div class="col-sm-6">
+									<div class="col-sm-3">
 										<div class="card">
 											<div class="card-body">
 												<div class="row">
@@ -45,70 +69,74 @@
 												</div>
 											</div>
 										</div>
+									</div>
+									<div class="col-sm-3">
 										<div class="card">
 											<div class="card-body">
 												<div class="row">
 													<div class="col mt-0">
-														<h5 class="card-title">Visitors</h5>
+														<h5 class="card-title">Sales</h5>
 													</div>
 
 													<div class="col-auto">
 														<div class="avatar">
 															<div class="avatar-title rounded-circle bg-primary-light">
-																<i class="align-middle" data-feather="users"></i>
+																<i class="align-middle" data-feather="truck"></i>
 															</div>
 														</div>
 													</div>
 												</div>
-												<h1 class="mt-1 mb-3">14.212</h1>
+												<h1 class="mt-1 mb-3">2.382</h1>
 												<div class="mb-0">
-													<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 5.25% </span>
+													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -3.65% </span>
 													<span class="text-muted">Since last week</span>
 												</div>
 											</div>
 										</div>
 									</div>
-									<div class="col-sm-6">
+									<div class="col-sm-3">
 										<div class="card">
 											<div class="card-body">
 												<div class="row">
 													<div class="col mt-0">
-														<h5 class="card-title">Earnings</h5>
+														<h5 class="card-title">Sales</h5>
 													</div>
 
 													<div class="col-auto">
 														<div class="avatar">
 															<div class="avatar-title rounded-circle bg-primary-light">
-																<i class="align-middle" data-feather="dollar-sign"></i>
+																<i class="align-middle" data-feather="truck"></i>
 															</div>
 														</div>
 													</div>
 												</div>
-												<h1 class="mt-1 mb-3">$21.300</h1>
+												<h1 class="mt-1 mb-3">2.382</h1>
 												<div class="mb-0">
-													<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 6.65% </span>
+													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -3.65% </span>
 													<span class="text-muted">Since last week</span>
 												</div>
 											</div>
 										</div>
+									</div>
+									<div class="col-sm-3">
 										<div class="card">
 											<div class="card-body">
 												<div class="row">
 													<div class="col mt-0">
-														<h5 class="card-title">Orders</h5>
+														<h5 class="card-title">Sales</h5>
 													</div>
 
 													<div class="col-auto">
 														<div class="avatar">
 															<div class="avatar-title rounded-circle bg-primary-light">
-																<i class="align-middle" data-feather="shopping-cart"></i>
+																<i class="align-middle" data-feather="truck"></i>
 															</div>
 														</div>
 													</div>
 												</div>
-												<h1 class="mt-1 mb-3">64</h1>
+												<h1 class="mt-1 mb-3">2.382</h1>
 												<div class="mb-0">
-													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -2.25% </span>
+													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -3.65% </span>
 													<span class="text-muted">Since last week</span>
 												</div>
 											</div>
@@ -118,7 +146,7 @@
 							</div>
 						</div>
 
-						<div class="col-xl-6 col-xxl-7">
+						<!-- <div class="col-xl-6 col-xxl-7">
 							<div class="card flex-fill w-100">
 								<div class="card-header">
 									<div class="card-actions float-right">
@@ -142,9 +170,9 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> -->
 					</div>
-
+<!-- 
 					<div class="row">
 						<div class="col-12 col-md-6 col-xxl-3 d-flex order-2 order-xxl-3">
 							<div class="card flex-fill w-100">
@@ -359,7 +387,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 
 				</div>
 			</main>

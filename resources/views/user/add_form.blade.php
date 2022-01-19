@@ -531,9 +531,10 @@ $(document).ready(function() {
                 url: url,
                 type: 'POST',
                 data: formdata,
-                processData: false,
-                cache: false,
-                contentType: false,
+    contentType:false,
+    processData:false,
+    cache:false,
+    dataType:"json",
                 success: function(response) {
                     console.log(response);
                     if(response.status == 200){

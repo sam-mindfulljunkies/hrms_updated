@@ -12,7 +12,7 @@ use App\Models\User;
 use App\Models\Leaves;
 
 
-use Hash,Auth,Validator;
+use Hash,Auth,Validator,File;
 
 
 
@@ -76,41 +76,66 @@ class UserController extends Controller
 
         $user->account_no = $request->account_no;
 
-        if($request->file('aadhar')){
+        if($request->hasFile('aadhar')){
+            $file = $request->file('aadhar');
             $addhar = $file->getClientOriginalName();
+            $file->move('./public/uploads/users/'.$request->user_id.'/', $addhar);
             $user->aadhar = $addhar; 
+            $user->aadhar_verify =1;
 
         }
-
-        if($request->file('pancard')){
+       
+        if($request->hasFile('pancard')){
+            $file = $request->file('pancard');
             $pancard = $file->getClientOriginalName();
+            $file->move('./public/uploads/users/'.$request->user_id.'/', $pancard);
             $user->pancard = $pancard;
+            $user->pancard_verify =1;
+
         }
 
-        if($request->file('election')){
+        if($request->hasFile('election')){
+            $file = $request->file('election');
             $election = $file->getClientOriginalName();
-            $user->election = $election;
+            $file->move('./public/uploads/users/'.$request->user_id.'/', $election);
+            $user->election_card = $election;
+            $user->election_verify =1;
+
         }
 
-        if($request->file('electricity')){
+        if($request->hasFile('electricity')){
+            $file = $request->file('electricity');
             $electricity = $file->getClientOriginalName();
+            $file->move('./public/uploads/users/'.$request->user_id.'/', $electricity);
             $user->electricity = $electricity;
+            $user->electricity_verify =1;
         }
 
-        if($request->file('certificate')){
+        if($request->hasFile('certificate')){
+            $file = $request->file('certificate');
             $certificate = $file->getClientOriginalName();
+            $file->move('./public/uploads/users/'.$request->user_id.'/', $certificate);
             $user->certificate = $certificate;
+            $user->certificate_verify =1;
         }
 
-        if($request->file('passport')){
+        if($request->hasFile('passport')){
+            $file = $request->file('passport');
             $passport = $file->getClientOriginalName();
+            $file->move('./public/uploads/users/'.$request->user_id.'/', $passport);
+
             $user->passport = $passport;
+            $user->passport_verify =1;
         }
 
-        if($request->file('licence')){
+        if($request->hasFile('licence')){
+            $file = $request->file('licence');
             $licence = $file->getClientOriginalName();
-            $user->licence = $licence;
+            $file->move('./public/uploads/users/'.$request->user_id.'/', $licence);
+            $user->driving_licence = $licence;
+            $user->licence_verify =1;
         }
+
         $user->save();
         return json_encode(['status'=>200]);
 
@@ -124,40 +149,114 @@ class UserController extends Controller
 
     public function update(Request $request){
 
+   
         $user =  User::find($request->user_id);
 
+        if(isset($request->fname))
         $user->fname = $request->fname;
 
+        if(isset($request->lname))
         $user->lname = $request->lname;
 
+        if(isset($request->username))
         $user->username = $request->username;
 
+        if(isset($request->email))
         $user->email = $request->email;
 
+        if(isset($request->password))
         $user->password = Hash::make($request->password);
 
+        if(isset($request->address))
         $user->address = $request->address;
 
+        if(isset($request->pincode))
         $user->pincode = $request->pincode;
 
+        if(isset($request->role_id))
         $user->role_id = $request->role_id;
-
+        
+        if(isset($request->pincode))
         $user->pincode = $request->pincode;
-
+        
+        if(isset($request->gender))
         $user->gender = $request->gender;
-
+        
+        if(isset($request->contact))
         $user->contact = $request->contact;
-
+        
+        if(isset($request->bank_name))
         $user->bank_name = $request->bank_name;
-
+        
+        if(isset($request->ifsc))
         $user->ifsc = $request->ifsc;
-
+        
+        if(isset($request->salary))
         $user->salary = $request->salary;
-
+        
+        if(isset($request->account_no))
         $user->account_no = $request->account_no;
+        if($request->hasFile('aadhar')){
+            $file = $request->file('aadhar');
+            $addhar = $file->getClientOriginalName();
+            $file->move('./public/uploads/users/'.$request->user_id.'/', $addhar);
+            $user->aadhar = $addhar; 
+            $user->aadhar_verify =1;
+
+        }
+       
+        if($request->hasFile('pancard')){
+            $file = $request->file('pancard');
+            $pancard = $file->getClientOriginalName();
+            $file->move('./public/uploads/users/'.$request->user_id.'/', $pancard);
+            $user->pancard = $pancard;
+            $user->pancard_verify =1;
+
+        }
+
+        if($request->hasFile('election')){
+            $file = $request->file('election');
+            $election = $file->getClientOriginalName();
+            $file->move('./public/uploads/users/'.$request->user_id.'/', $election);
+            $user->election_card = $election;
+            $user->election_verify =1;
+
+        }
+
+        if($request->hasFile('electricity')){
+            $file = $request->file('electricity');
+            $electricity = $file->getClientOriginalName();
+            $file->move('./public/uploads/users/'.$request->user_id.'/', $electricity);
+            $user->electricity = $electricity;
+            $user->electricity_verify =1;
+        }
+
+        if($request->hasFile('certificate')){
+            $file = $request->file('certificate');
+            $certificate = $file->getClientOriginalName();
+            $file->move('./public/uploads/users/'.$request->user_id.'/', $certificate);
+            $user->certificate = $certificate;
+            $user->certificate_verify =1;
+        }
+
+        if($request->hasFile('passport')){
+            $file = $request->file('passport');
+            $passport = $file->getClientOriginalName();
+            $file->move('./public/uploads/users/'.$request->user_id.'/', $passport);
+
+            $user->passport = $passport;
+            $user->passport_verify =1;
+        }
+
+        if($request->hasFile('licence')){
+            $file = $request->file('licence');
+            $licence = $file->getClientOriginalName();
+            $file->move('./public/uploads/users/'.$request->user_id.'/', $licence);
+            $user->driving_licence = $licence;
+            $user->licence_verify =1;
+        }
 
         $user->update();
-
         return json_encode(['status'=>200]);
 
     }

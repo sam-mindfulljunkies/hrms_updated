@@ -1,5 +1,10 @@
 @extends('layouts.app')
 @section('content')
+<style>
+    .fas.fa-edit{
+        font-size:25px;
+    }
+    </style>
 <main class="content">
     <div class="container">
     <div class="card" style="padding:15px">
@@ -10,7 +15,16 @@
                 </div>         
             </div>
             <div class="col-md-6">
-                <h2 style="left:10px;margin-left: -320px;margin-top: 86px;"><td>{{$user->fname}} {{$user->lname}}</td></h2>
+                <h2 style="left:10px;margin-left: -320px;margin-top: 86px;">
+                <td>{{$user->fname}} {{$user->lname}}</td>
+                <td>
+
+                <a class="btn btn-xxs" title="Edit" href="{{route('edit_user',$user->id)}}">
+                <i class="fas fa-edit"></i>
+
+                    </a>
+</td>
+            </h2>
             </div>
         </div>
         <div class="col-md-12">

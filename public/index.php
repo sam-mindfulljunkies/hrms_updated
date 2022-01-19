@@ -15,7 +15,8 @@ define('LARAVEL_START', microtime(true));
 | instead of starting the framework, which could cause an exception.
 |
 */
-
+// error_reporting(E_ALL ^ E_NOTICE);
+error_reporting(-1);
 if (file_exists(__DIR__.'/../storage/framework/maintenance.php')) {
     require __DIR__.'/../storage/framework/maintenance.php';
 }
