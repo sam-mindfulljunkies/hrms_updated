@@ -364,6 +364,10 @@
                                     <input type="text" class="form-control" id="salary" name="salary">
                                 </div>
                                 <div class="mb-3 col-md-4 form-group">
+                                    <label class="form-label" for="inputZip">Aadhar</label>
+                                    <input type="file" name="aadhar" id="aadhar" class="form-control">
+                                </div>
+                                <div class="mb-3 col-md-4 form-group">
                                     <label class="form-label" for="inputZip">Pancard</label>
                                     <input type="file" name="pancard" id="pancard" class="form-control">
                                 </div>
@@ -459,6 +463,10 @@ $(document).ready(function() {
             },
             pincode: {
                 maxlength: 6
+            },
+            aadhar:{
+                required: true,
+                extension: "png|jpg|pdf"
             }
         },
         messages: {
@@ -505,6 +513,10 @@ $(document).ready(function() {
 
             pincode: {
                 maxlength: "Max Length for  pincode will be 6 digits",
+            },
+            aadhar{
+                required: "Aadhar Card uploadation required",
+                extension: "PNG JPG and PDF are only allowed"
             }
         },
         errorElement: 'span',

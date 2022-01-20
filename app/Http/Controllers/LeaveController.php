@@ -22,8 +22,13 @@ class LeaveController extends Controller
 {
 
     public function index(){
-       $leaves = Leaves::all();
-
+        
+        if(Auth::user()->role_id == 1){
+            $leaves = Leaves::all();
+        }else{
+            $leaves = Leaves::all()->where('user_id',Auth::user()->id);
+        }
+    
        foreach($leaves as $val){
            $val->DayPart = LeaveTypes::where('id',$val->type)->pluck('name')->first();;
            $val->subType = LeaveCircles::where('id',$val->leave_cir_id)->pluck('name')->first();;
@@ -45,7 +50,6 @@ class LeaveController extends Controller
     }
 
     public function getuserleave($date){
-
 
 
         $user =  User::where('role_id',2)->paginate(10);

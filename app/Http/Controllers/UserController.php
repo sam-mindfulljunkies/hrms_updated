@@ -150,9 +150,8 @@ class UserController extends Controller
 
     }
 
-    public function update(Request $request){
-
-   
+    public function update(Request $request){  
+              
         $user =  User::find($request->user_id);
 
         if(isset($request->fname))
@@ -199,12 +198,14 @@ class UserController extends Controller
         
         if(isset($request->account_no))
         $user->account_no = $request->account_no;
+
+
         if($request->hasFile('aadhar')){
             $file = $request->file('aadhar');
             $addhar = $file->getClientOriginalName();
             $file->move('./public/uploads/users/'.$request->user_id.'/', $addhar);
             $user->aadhar = $addhar; 
-            $user->aadhar_verify =1;
+            $user->aadhar_verify = 1;
 
         }
        
@@ -260,8 +261,8 @@ class UserController extends Controller
         }
 
         $user->update();
-        return json_encode(['status'=>200]);
-
+         return response()->json(['status'=>200]);
+        //  return redirect()->back();
     }
 
 
