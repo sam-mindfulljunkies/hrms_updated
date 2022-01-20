@@ -2,109 +2,111 @@
 
 @section('content')
 
-    <main class="content">
+<main class="content">
 
-                <div class="container-fluid p-0">
-
-
-
-                    <h1 class="h3 mb-3">Apply Leave</h1>
+    <div class="container-fluid p-0">
 
 
 
-                    <div class="row">
+        <h1 class="h3 mb-3">Apply Leave</h1>
 
-                        <div class="col-md-12">
 
-                            <div class="card">
 
-                                <div class="card-body">
+        <div class="row">
 
-                                    <form method="post" action="{{route('submit_leave')}}" id="report_register" enctype="multipart/form-data">
+            <div class="col-md-12">
 
-                                    @csrf
+                <div class="card">
 
-                                    <div class="row">
+                    <div class="card-body">
 
-                                            <div class="mb-3 col-md-4">
+                        <form method="post" action="{{route('submit_leave')}}" id="report_register"
+                            enctype="multipart/form-data">
 
-                                                <label class="form-label" for="inputEmail4">From Date</label>
+                            @csrf
 
-                                                <input type="date" name="from_date" class="form-control txtDate" id="from_date">
+                            <div class="row">
 
-                                            </div>
+                                <div class="mb-3 col-md-4 form-group">
 
-                                            <div class="mb-3 col-md-4">
+                                    <label class="form-label" for="inputEmail4">From Date</label>
 
-                                                <label class="form-label" for="inputEmail4">To Date</label>
+                                    <input type="date" name="from_date" class="form-control txtDate" id="from_date">
 
-                                                <input type="date" name="to_date" class="form-control txtDate" id="to_date">
+                                </div>
 
-                                            </div>
+                                <div class="mb-3 col-md-4 form-group">
 
-                                        <div class="row">
+                                    <label class="form-label" for="inputEmail4">To Date</label>
 
-                                            <div class="mb-3 col-md-3">
+                                    <input type="date" name="to_date" class="form-control txtDate" id="to_date">
 
-                                                <label class="form-label" for="inputEmail4">Type</label>
+                                </div>
 
-                                                <select name="type" class="form-control" id="half_type">
-                                                    <option>Select Leave</option>
-                                                    @foreach($leave_type as $data)
+                                <div class="row">
 
-                                                    <option value="{{$data->id}}">{{$data->name}}</option>
+                                    <div class="mb-3 col-md-3 form-group">
 
-{{--                                                    <option value="2">Full Day</option>--}}
+                                        <label class="form-label" for="inputEmail4">Type</label>
 
-{{--                                                    <option value="3">Quaterly</option>--}}
-                                                    @endforeach
-                                                </select>
+                                        <select name="type" class="form-control" id="half_type">
+                                            <option>Select Leave</option>
+                                            @foreach($leave_type as $data)
 
-                                            </div>
+                                            <option value="{{$data->id}}">{{$data->name}}</option>
 
-                                            <div class="mb-3 col-md-3">
+                                            {{--                                                    <option value="2">Full Day</option>--}}
 
-                                                <label class="form-label">Select Halfday/Quaterly Type</label>
+                                            {{--                                                    <option value="3">Quaterly</option>--}}
+                                            @endforeach
+                                        </select>
 
-                                                <select class="form-control" id="half_id" name="leave_cir_id">
+                                    </div>
 
-{{--                                                    <option value="1">First Half</option>--}}
+                                    <div class="mb-3 col-md-3 form-group">
 
-{{--                                                    <option value="2">Second Half</option>--}}
+                                        <label class="form-label">Select Halfday/Quaterly Type</label>
 
-                                                </select>
+                                        <select class="form-control" id="half_id" name="leave_cir_id">
 
-                                            </div>
+                                            {{--                                                    <option value="1">First Half</option>--}}
 
-                                        </div>
+                                            {{--                                                    <option value="2">Second Half</option>--}}
 
-                                            <div class="mb-3 col-md-12">
+                                        </select>
 
-                                                <label class="form-label" for="inputPassword4">Reason for Leave</label>
+                                    </div>
 
-                                                <textarea class="form-control" name="description" style="resize:none;height:100px"></textarea>
+                                </div>
 
-                                            </div>
+                                <div class="mb-3 col-md-12 form-group">
 
-                                        </div>
+                                    <label class="form-label" for="inputPassword4">Reason for Leave</label>
 
-                                        <button type="submit" class="btn btn-primary btnsub">Submit</button>
-
-                                    </form>
+                                    <textarea class="form-control" name="description"
+                                        style="resize:none;height:100px"></textarea>
 
                                 </div>
 
                             </div>
 
-                        </div>
+                            <button type="submit" class="btn btn-primary btnsub">Submit</button>
+
+                        </form>
 
                     </div>
 
-                    <div id="imagePreview"></div>
-
                 </div>
 
-            </main>
+            </div>
+
+        </div>
+
+        <div id="imagePreview"></div>
+
+    </div>
+
+</main>
 
 @endsection
 
@@ -121,7 +123,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/additional-methods.min.js"></script>
 
 <script type="text/javascript">
-
 $.ajaxSetup({
 
     headers: {
@@ -134,32 +135,35 @@ $.ajaxSetup({
 
 
 
-$(document).ready(function(){
+$(document).ready(function() {
 
-    $("#half_id").prop('disabled',false);
+    $("#half_id").prop('disabled', false);
 
-    $("#half_type").on('change',function(){
+    $("#half_type").on('change', function() {
 
         var leave_type_id = $(this).val();
         // alert(leave_type_id);
 
 
-        if(leave_type_id == 1){
+        if (leave_type_id == 1) {
 
-            $("#half_id").prop('disabled',true);
+            $("#half_id").prop('disabled', true);
 
-        }else{
+        } else {
 
-            $("#half_id").prop('disabled',false);
+            $("#half_id").prop('disabled', false);
             $.ajax({
-                url: "{{ url('/leaves/leave_sub_type/') }}"+"/"+leave_type_id,
+                url: "{{ url('/leaves/leave_sub_type/') }}" + "/" + leave_type_id,
                 method: "POST",
-                data:{leave_type_id:leave_type_id},
-                success:function(data){
-                    $.each(data.data,function(key,value){
+                data: {
+                    leave_type_id: leave_type_id
+                },
+                success: function(data) {
+                    $.each(data.data, function(key, value) {
                         // console.log(value.id);
                         // debugger;
-                       $('#half_id').append('<option value=' + value.id + '>' + value.name + '</option>');
+                        $('#half_id').append('<option value=' + value.id + '>' +
+                            value.name + '</option>');
                     })
                 }
 
@@ -173,15 +177,15 @@ $(document).ready(function(){
 
     //disable pre date
 
-    $(function(){
+    $(function() {
         var dtToday = new Date();
 
         var month = dtToday.getMonth() + 1;
         var day = dtToday.getDate();
         var year = dtToday.getFullYear();
-        if(month < 10)
+        if (month < 10)
             month = '0' + month.toString();
-        if(day < 10)
+        if (day < 10)
             day = '0' + day.toString();
 
         var maxDate = year + '-' + month + '-' + day;
@@ -196,18 +200,18 @@ $(document).ready(function(){
 
 
 
-$(document).ready(function () {
+$(document).ready(function() {
 
     var url = "{{route('submit_leave')}}";
 
     $('#report_register').validate({
 
         rules: {
-            from_date:{
-                required:true,
+            from_date: {
+                required: true,
             },
-            to_date:{
-                required:true,
+            to_date: {
+                required: true,
             },
 
             description: {
@@ -215,8 +219,8 @@ $(document).ready(function () {
                 required: true
 
             },
-            type:{
-                required:true,
+            type: {
+                required: true,
             },
 
 
@@ -225,53 +229,53 @@ $(document).ready(function () {
 
         },
 
-          errorElement: 'span',
+        errorElement: 'span',
 
-          errorPlacement: function (error, element) {
+        errorPlacement: function(error, element) {
 
             error.addClass('invalid-feedback');
 
             element.closest('.form-group').append(error);
 
-          },
+        },
 
-          highlight: function (element, errorClass, validClass) {
+        highlight: function(element, errorClass, validClass) {
 
             $(element).addClass('is-invalid');
 
-          },
+        },
 
-          unhighlight: function (element, errorClass, validClass) {
+        unhighlight: function(element, errorClass, validClass) {
 
             $(element).removeClass('is-invalid');
 
-          },
+        },
 
-          submitHandler: function(){
+        submitHandler: function() {
 
-             var formdata =  new FormData($("#report_register")[0]);
+            var formdata = new FormData($("#report_register")[0]);
 
-             $.ajax({
+            $.ajax({
 
-                url:url,
+                url: url,
 
                 type: 'POST',
 
-                data:formdata,
+                data: formdata,
 
-                success:function(response){
+                success: function(response) {
 
-            Swal({
+                    Swal({
 
-                    position: 'top-end',
+                        position: 'top-end',
 
-                    icon: 'success',
+                        icon: 'success',
 
-                    title: 'Successfully Registered',
+                        title: 'Successfully Registered',
 
-                    showConfirmButton: false,
+                        showConfirmButton: false,
 
-                    timer: 2000
+                        timer: 2000
 
                     })
 
@@ -281,7 +285,7 @@ $(document).ready(function () {
 
             })
 
-          }
+        }
 
     });
 
@@ -291,69 +295,66 @@ $(document).ready(function () {
 
 function fileValidation() {
 
-            var fileInput =
+    var fileInput =
 
-                document.getElementById('file');
-
-
-
-            var filePath = fileInput.value;
+        document.getElementById('file');
 
 
 
-            // Allowing file type
-
-            var allowedExtensions =
-
-                    /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+    var filePath = fileInput.value;
 
 
 
-            if (!allowedExtensions.exec(filePath)) {
+    // Allowing file type
 
-                $("<span class='fileuploaderror' style='color:red;'>Please select valid Image</span>").insertAfter('#file');
+    var allowedExtensions =
 
-                fileInput.value = '';
-
-                return false;
-
-            }
-
-            else
-
-            {
-
-                $(".fileuploaderror").html('');
-
-                // Image preview
-
-                if (fileInput.files && fileInput.files[0]) {
-
-                    var reader = new FileReader();
-
-                    reader.onload = function(e) {
-
-                        document.getElementById(
-
-                            'imagePreview').innerHTML =
-
-                            '<img src="' + e.target.result
-
-                            + '"/>';
-
-                    };
+        /(\.jpg|\.jpeg|\.png|\.gif)$/i;
 
 
 
-                    reader.readAsDataURL(fileInput.files[0]);
+    if (!allowedExtensions.exec(filePath)) {
 
-                }
+        $("<span class='fileuploaderror' style='color:red;'>Please select valid Image</span>").insertAfter('#file');
 
-            }
+        fileInput.value = '';
+
+        return false;
+
+    } else
+
+    {
+
+        $(".fileuploaderror").html('');
+
+        // Image preview
+
+        if (fileInput.files && fileInput.files[0]) {
+
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+
+                document.getElementById(
+
+                        'imagePreview').innerHTML =
+
+                    '<img src="' + e.target.result
+
+                    +
+                    '"/>';
+
+            };
+
+
+
+            reader.readAsDataURL(fileInput.files[0]);
 
         }
 
+    }
+
+}
 </script>
 
 @endpush
-
