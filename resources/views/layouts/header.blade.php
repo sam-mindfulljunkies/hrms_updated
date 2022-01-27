@@ -24,7 +24,7 @@ $user = $data->get_leaves();
 						</button>
 					</div>
 				</form>
-				@if(Auth::guard('admin')->user()->role_id == 2)
+				@if(Auth::user()->role_id == 2)
 				<div class="margin-header">
 				<p>Leave Balance</p>
 				<p>Casual  {{$user['casual']}}</p>
@@ -40,24 +40,24 @@ $user = $data->get_leaves();
 							<a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-toggle="dropdown">
 								<i class="align-middle" data-feather="settings"></i>
 							</a>
-						@if(Auth::guard('admin')->user()->role_id == 1)
+						@if(Auth::user()->role_id == 1)
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-toggle="dropdown">
 								<!-- <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded mr-1" alt="Charles Hall" />  -->
-								<span class="text-dark">{{Auth::guard('admin')->user()->username}}</span>
+								<span class="text-dark">{{Auth::user()->username}}</span>
 							</a>
 							@endif
-							@if(Auth::guard('admin')->user()->role_id == 2)
+							@if(Auth::user()->role_id == 2)
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-toggle="dropdown">
 								<!-- <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded mr-1" alt="Charles Hall" />  -->
-								<span class="text-dark">{{Auth::guard('admin')->user()->username}}</span>
+								<span class="text-dark">{{Auth::user()->username}}</span>
 							</a>
 							@endif
 
 							<div class="dropdown-menu dropdown-menu-right">
-							@if(Auth::guard('admin')->user()->role_id == 1)
+							@if(Auth::user()->role_id == 1)
 							<a class="dropdown-item" href="{{route('admin.logout')}}">Log out</a>
 							@endif
-							@if(Auth::guard('admin')->user()->role_id == 2)
+							@if(Auth::user()->role_id == 2)
 							<a class="dropdown-item" href="{{route('admin.logout')}}">Log out</a>
 							@endif
 								

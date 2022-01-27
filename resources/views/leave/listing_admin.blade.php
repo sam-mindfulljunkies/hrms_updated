@@ -220,8 +220,8 @@
                                 success:function (res){
                                     if(res.status == 200){
                                         swal({
-                                            title: 'Successfully Apporved Leave',
-                                            text: 'Successfully changed status',
+                                            title: 'successfully declined the leave',
+                                            text: 'successfully declined the leave',
                                             icon: 'success',
                                         }).then(function (){
                                             location.reload();

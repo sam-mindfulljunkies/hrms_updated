@@ -7,16 +7,17 @@ use Auth,Session;
 
 class LoginController extends Controller
 {
+    public function __construct(){
+        // $this->middleware('auth');
+    }
+
     public function index(){
         return view('login');
     }
+    
     public function check_auth(Request $request){
         $credential = $request->only('email','password');
-        if(Auth::guard('admin')->attempt($credential)){
-            return redirect('/dashboard');
-        }
-        
-        if(Auth::guard('employee')->attempt($credential)){
+        if(Auth::attempt($credential)){
             return redirect('/dashboard');
         }
         return redirect()->route('home');
@@ -27,12 +28,13 @@ class LoginController extends Controller
     }
     
     public function admin_logout(){
-        Auth::guard('admin')->logout();
+        Auth::logout();
         return redirect()->route('home');
     }
     
     public function employee_logout(){
-        Auth::guard('employee')->logout();
+        Auth::logout();
+        // Auth::guard('employee')->logout();
         return redirect()->route('home');
     }
 }

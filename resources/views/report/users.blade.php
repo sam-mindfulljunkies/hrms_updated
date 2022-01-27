@@ -56,7 +56,7 @@
                                         @foreach($report as $val)
                                             <tr>
                                             @if($count == 0)
-                                            <td rowspan="{{count($report)}}">{{Auth::guard('admin')->user()->username}}</td>
+                                            <td rowspan="{{count($report)}}">{{Auth::user()->username}}</td>
                                             @endif
                                             @if($count == 0)
                                             <td rowspan="{{count($report)}}" width="10%">{{$val->date}}</td>

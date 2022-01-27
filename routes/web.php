@@ -35,6 +35,7 @@ use App\Http\Controllers\LeaveController;
 |
 
 */
+// Auth::routes(['verify' => true]);
 
 Route::get('/', [LoginController::class, 'index'])->name('home');
 
@@ -42,7 +43,7 @@ Route::post('/login', [LoginController::class, 'check_auth'])->name('login');
 
 
 
-Route::group(['middleware' => 'admin'],function(){
+Route::group(['middleware' => ['auth']],function(){
 
     Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('dashboard');
 

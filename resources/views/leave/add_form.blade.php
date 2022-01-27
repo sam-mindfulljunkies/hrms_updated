@@ -140,17 +140,17 @@ $(document).ready(function() {
     $("#half_id").prop('disabled', false);
 
     $("#half_type").on('change', function() {
-
+     
         var leave_type_id = $(this).val();
         // alert(leave_type_id);
 
 
         if (leave_type_id == 1) {
-
+            $("#half_id").empty();
             $("#half_id").prop('disabled', true);
 
         } else {
-
+            $("#half_id").empty();
             $("#half_id").prop('disabled', false);
             $.ajax({
                 url: "{{ url('/leaves/leave_sub_type/') }}" + "/" + leave_type_id,
@@ -159,6 +159,7 @@ $(document).ready(function() {
                     leave_type_id: leave_type_id
                 },
                 success: function(data) {
+                    $("#half_id").html();
                     $.each(data.data, function(key, value) {
                         // console.log(value.id);
                         // debugger;

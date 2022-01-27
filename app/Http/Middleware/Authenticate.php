@@ -18,4 +18,16 @@ class Authenticate extends Middleware
             return route('home');
         }
     }
+    // public function handle(Request $request, Closure $next)
+    // {
+    //     $isAuthenticatedAdmin = (Auth::check());
+
+    //     //This will be excecuted if the new authentication fails.
+    //     if (!$isAuthenticatedAdmin){
+
+    //         return redirect()->route('home')->with('message', 'Authentication Error.');
+    //     }
+    //     return $next($request);
+
+    // }
 }

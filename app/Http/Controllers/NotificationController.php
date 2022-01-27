@@ -8,7 +8,7 @@ use DB;
 class NotificationController extends Controller
 {
     public function lisiting_admin(){
-        $notification =  Notifications::where('from',Auth::guard('admin')->user()->id)->get();
+        $notification =  Notifications::where('from',Auth::user()->id)->get();
         foreach($notification as $key => $val){
             $notification[$key]['date'] = date('Y-m-d',strtotime($val->created_at));
             $notification[$key]['time'] = date('h:i a',strtotime($val->created_at));
@@ -17,7 +17,7 @@ class NotificationController extends Controller
         return view('notification.index',compact('notification'));
     }
     public function listing(){
-        $user = Auth::guard('admin')->user()->id;
+        $user = Auth::user()->id;
         $notification =  Notifications::where('hide',0)->where('to',$user)->orderBY('id','desc')->get();
         return view('notification.userindex',compact('notification'));
     }
@@ -34,7 +34,7 @@ class NotificationController extends Controller
         $notification =  Notifications::find($id);
         $notification->hide = 1;
         $notification->update();
-        return redirect()->route('notification.users',['id'=>Auth::guard('admin')->user()->id]);
+        return redirect()->route('notification.users',['id'=>Auth::guser()->id]);
     }
 
     public function submit_notification(Request $request){

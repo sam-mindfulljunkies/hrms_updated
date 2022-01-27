@@ -14,7 +14,7 @@ use App\Models\User;
 
 use Auth,URL,Session;
 Use App\Models\LeaveTypes;
-Use App\Models\LeaveCircles;
+Use App\Models\LeaveCircles,App\Models\Notifications,DB;
 
 
 class LeaveController extends Controller
@@ -22,7 +22,6 @@ class LeaveController extends Controller
 {
 
     public function index(){
-        
         if(Auth::user()->role_id == 1){
             $leaves = Leaves::all();
         }else{
@@ -84,7 +83,7 @@ class LeaveController extends Controller
 
         $leave->from_date = $request->from_date;
 
-        $leave->user_id = Auth::guard('admin')->user()->id;
+        $leave->user_id = Auth::user()->id;
 
         $leave->to_date = $request->to_date;
 
@@ -101,7 +100,9 @@ class LeaveController extends Controller
 
         //apply leave hours
         $diifernce_date = ($end_date - $start_date);
-
+        if($start_date  == $end_date)
+        $diifernce_date = 1;
+        
         //convert hours to date
         $days = $diifernce_date / (60 * 60 * 24);
 
@@ -147,6 +148,16 @@ class LeaveController extends Controller
 
         }
         if($leave->save()){
+            $admin = DB::select('select * from users where role_id = 1', [1]);
+            $notification = new Notifications();
+            $notification->from =  Auth::user()->id;
+            $notification->to = $admin[0]->id;
+            
+            $notification->subject = "Applied leaved";
+            $notification->description = Auth::user()->username."Added Leave on Date : ". $request->from_date;
+            // $notification->extra = Auth::user()->username."Added Leave on Date : ". $request->from_date;
+            $notification->hide = 0;
+            $notification->save();
             Session::flash('success', 'Leave apply success');
             return redirect()->route('leave.users');
 
@@ -163,18 +174,41 @@ class LeaveController extends Controller
         $leave = Leaves::find($id);
         $leave->delete();
         return response()->json(['status'=>200,'success'=>true]);
+        
     }
 
     public function approve($id){
         $leave = Leaves::find($id);
         $leave->status = 1;
         $leave->update();
+        $leave = Leaves::find($id);
+        $user = DB::select("select * from leaves where id = $id", [1]);    
+        $leave->delete();
+        $notification = new Notifications();
+            $notification->from =  Auth::user()->id;
+            $notification->to = $user[0]->id;
+            $notification->subject = "Approve Leave Request";
+            $notification->description = Auth::user()->username."Approved on Date : ". $request->from_date;
+            // $notification->extra = Auth::user()->username."Added Leave on Date : ". $request->from_date;
+            $notification->hide = 0;
+            $notification->save();
         return response()->json(['status'=>200,'success'=>true]);
     }
     public function reject($id){
         $leave = Leaves::find($id);
         $leave->status =2;
         $leave->update();
+
+        $user = DB::select("select * from leaves where id = $id", [1]);
+            $notification = new Notifications();
+            $notification->from =  Auth::user()->id;
+            $notification->to = $user[0]->to;
+            
+            $notification->subject = "Rejection of Leave";
+            $notification->description = Auth::user()->username."Rejected on Date : ". $request->from_date;
+            // $notification->extra = Auth::user()->username."Added Leave on Date : ". $request->from_date;
+            $notification->hide = 0;
+            $notification->save();
         return response()->json(['status'=>200,'success'=>true]);
     }
 
@@ -185,10 +219,7 @@ class LeaveController extends Controller
 
 
     public function leave_sub_type($id){
-//        echo "hello";
         $request = LeaveCircles::where('laeve_type_id',$id)->get();
-//        dd($request)
-//        $leave_sub_type = LeaveCircles::where('laeve_type_id',$request->$id)->get();
         return response()->json(['status'=>200,'success'=>true,'data'=>$request]);
     }
 

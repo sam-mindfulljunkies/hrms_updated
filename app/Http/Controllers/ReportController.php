@@ -55,7 +55,7 @@ class ReportController extends Controller
             $report->image = $filename;
         }
         $report->time = date('H:i:s');
-        $report->user_id = Auth::guard('admin')->user()->id;
+        $report->user_id = Auth::user()->id;
         $report->description = $request->description;
         $report->save();
     }

@@ -14,29 +14,29 @@
             </div>
             <!---Notification-->
             <!-- <div class="col-auto ml-auto text-right mt-n1"> -->
-            @if(Auth::guard('admin')->user()->role_id != 1)
-            @if(Auth::guard('admin')->user()->pancard_verify !=1)
+            @if(Auth::user()->role_id != 1)
+            @if(Auth::user()->pancard_verify !=1)
             <div class="alert alert-danger p-3 mt-3">Please update Pancard documentation as your profile detail was
                 incomplete<a style="right: 2% !important;position: absolute;margin-top: 0.1%;" href=""><i
                         class="fa fa-times" aria-hidden="true"></i></a>
             </div>
             @endif
-            @if(Auth::guard('admin')->user()->aadhar_verify !=1)
+            @if(Auth::user()->aadhar_verify !=1)
             <div class="alert alert-danger p-3 mt-3">Please update Aadhar as your profile detail was incomplete <a
                     style="right: 2% !important;position: absolute;margin-top: 0.1%;" href=""><i class="fa fa-times"
                         aria-hidden="true"></i></a>
             </div>
             @endif
-            @if(Auth::guard('admin')->user()->certificate_verify !=1)
+            @if(Auth::user()->certificate_verify !=1)
             <div class="alert alert-danger p-3 mt-3">Please update Certification as your profile detail was incomplete<a
                     style="right: 2% !important;position: absolute;margin-top: 0.1%;" href=""><i class="fa fa-times"
                         aria-hidden="true"></i></a>
             </div>
             @endif
 
-			@if(Auth::guard('admin')->user()->certificate_verify !=1 || 
-			Auth::guard('admin')->user()->certificate_verify !=1 ||
-			 Auth::guard('admin')->user()->pancard_verify !=1))
+			@if(Auth::user()->certificate_verify !=1 || 
+			Auth::user()->certificate_verify !=1 ||
+			 Auth::user()->pancard_verify !=1))
 
             <div class="alert alert-primary p-3">To Update the Documentation Please goto My profile section from
                 sidebar<a style="right: 2% !important;position: absolute;margin-top: 0.1%;" href=""><i

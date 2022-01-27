@@ -14,7 +14,7 @@
 
 					</li>
 
-					@if(Auth::guard('admin')->user()->role_id == 1)
+					@if(Auth::user()->role_id == 1)
 
 					<li @if(Route::currentRouteName() == 'users') class="sidebar-item active" @elseclass="sidebar-item " @endif>
 
@@ -61,7 +61,7 @@
 
 					@endif
 
-					@if(Auth::guard('admin')->user()->role_id == 2)
+					@if(Auth::user()->role_id == 2)
 
 					 <li @if(Route::currentRouteName() == 'user_profile') class="sidebar-item active" @elseclass="sidebar-item " @endif>
 
@@ -75,7 +75,7 @@
 
 					<li @if(Route::currentRouteName() == 'reports.users') class="sidebar-item active" @elseclass="sidebar-item " @endif>
 
-						<a href="{{route('reports.users',Auth::guard('admin')->user()->id)}}" class="sidebar-link">
+						<a href="{{route('reports.users',Auth::user()->id)}}" class="sidebar-link">
 
 							<i class="align-middle" data-feather="file-text"></i> <span class="align-middle">Reports</span>
 
@@ -85,7 +85,7 @@
 
 					<li @if(Route::currentRouteName() == 'notification.users') class="sidebar-item active" @elseclass="sidebar-item " @endif>
 
-						<a href="{{route('notification.users',Auth::guard('admin')->user()->id)}}" class="sidebar-link">
+						<a href="{{route('notification.users',Auth::user()->id)}}" class="sidebar-link">
 
 							<i class="align-middle" data-feather="bell"></i> <span class="align-middle">Notifications</span>
 

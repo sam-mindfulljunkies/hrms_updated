@@ -279,15 +279,15 @@ class UserController extends Controller
     }
 
         public function user_profile(){
-        $user = Auth::guard('admin')->user();
+        $user = Auth::user();
         return view('user.profile',compact('user'));
     }
 
     public function get_leaves(){
-        $casual =  Leaves::where('type',1)->where('user_id',Auth::guard('admin')->user()->id)->count();
+        $casual =  Leaves::where('type',1)->where('user_id',Auth::user()->id)->count();
     
-        $floating =  Leaves::where('type',3)->where('user_id',Auth::guard('admin')->user()->id)->count();
-        $medical =  Leaves::where('type',2)->where('user_id',Auth::guard('admin')->user()->id)->count();
+        $floating =  Leaves::where('type',3)->where('user_id',Auth::user()->id)->count();
+        $medical =  Leaves::where('type',2)->where('user_id',Auth::user()->id)->count();
         // dd($casual);
         $user['casual'] = (12 - $casual);  // total 12 
         $user['floating'] = (2 - $floating); //total 2
