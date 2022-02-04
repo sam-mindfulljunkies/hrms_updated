@@ -4,13 +4,33 @@
 .mt-3 {
     margin-top: 3%;
 }
+.max-300{
+	max-height:300px;
+	overflow:scroll;
+	overflow-x: hidden;
+}
 </style>
 <main class="content">
+<div class="container-fluid p-0">
+<div class="row mb-2 mb-xl-3">
+          
+		  <!-- </div> -->
+		  <div class="col-auto ml-auto text-right mt-n1">
+			  <nav aria-label="breadcrumb">
+				  <ol class="breadcrumb bg-transparent p-0 mt-1 mb-0">
+					  <li class="breadcrumb-item"><a href="#">AdminKit</a></li>
+					  <li class="breadcrumb-item"><a href="#">Dashboards</a></li>
+					  <li class="breadcrumb-item active" aria-current="page">Analytics</li>
+				  </ol>
+			  </nav>
+		  </div>
+</div>
+</div>
     <div class="container-fluid p-0">
-
-        <div class="row mb-2 mb-xl-3">
-            <div class="col-auto d-none d-sm-block">
-                <h3><strong>Analytics</strong> Dashboard</h3>
+	<h3><strong>Analytics</strong> Dashboard</h3>
+<div class="row mb-2 mb-xl-3 max-300">
+<div class="col-auto d-none d-sm-block">
+              
             </div>
             <!---Notification-->
             <!-- <div class="col-auto ml-auto text-right mt-n1"> -->
@@ -34,9 +54,20 @@
             </div>
             @endif
 
+
+
+			@if(isset($user['adminNotificationLeaves']))
+			@foreach($user['adminNotificationLeaves'] as $val)
+			<div class="alert alert-warning p-3 mt-3">{{$val->description}}<a
+                    style="right: 2% !important;position: absolute;margin-top: 0.1%;" href=""><i class="fa fa-times"
+                        aria-hidden="true"></i></a>
+            </div>
+			@endforeach
+			@endif
+
 			@if(Auth::user()->certificate_verify !=1 || 
 			Auth::user()->certificate_verify !=1 ||
-			 Auth::user()->pancard_verify !=1))
+			 Auth::user()->pancard_verify !=1)
 
             <div class="alert alert-primary p-3">To Update the Documentation Please goto My profile section from
                 sidebar<a style="right: 2% !important;position: absolute;margin-top: 0.1%;" href=""><i
@@ -44,19 +75,7 @@
             </div>
 			@endif
 			@endif
-
-            <!-- </div> -->
-            <div class="col-auto ml-auto text-right mt-n1">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb bg-transparent p-0 mt-1 mb-0">
-                        <li class="breadcrumb-item"><a href="#">AdminKit</a></li>
-                        <li class="breadcrumb-item"><a href="#">Dashboards</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Analytics</li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-        <div class="row">
+			</div>        <div class="row">
             <div class="col-md-12">
                 <div class="">
                     <div class="row">

@@ -79,8 +79,20 @@ class LeaveController extends Controller
 
     public function submit_leave(Request $request){
 
-        $leave =  new Leaves();
+        $leaveExist = Leaves::where('user_id',$leave->user_id)->get();
+        
+        if(is_array($leaveExist)){
+            foreach($leaveExist as $val){
+                    if(strtotime($val->from_date) == strtotime($request->from_date)){
+                         Session::flash('success', 'Leave apply Failed');
+            return redirect()->route('leave.users');
+                    }
+            }
+        }
 
+
+        $leave =  new Leaves();
+        
         $leave->from_date = $request->from_date;
 
         $leave->user_id = Auth::user()->id;

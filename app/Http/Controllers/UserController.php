@@ -42,7 +42,6 @@ class UserController extends Controller
         ]);
 
         if ($validator->fails()) {
-            // return back()->with([]);
             return response()->json(['status'=>400,'error'=>$validator->errors()]);
         }
 
@@ -292,6 +291,11 @@ class UserController extends Controller
         $user['casual'] = (12 - $casual);  // total 12 
         $user['floating'] = (2 - $floating); //total 2
         $user['medical'] = (5 - $medical); // total 5
+
+        if(Auth::user()->role_id == 1){
+            $user['adminNotificationLeaves'] = Leaves::where('to',Auth::user()->id)->where('hide',0)->get();
+        }
+
         return  $user;
     }
 
