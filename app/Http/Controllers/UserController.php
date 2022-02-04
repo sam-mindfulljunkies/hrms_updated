@@ -10,8 +10,7 @@ use Illuminate\Http\Request;
 
 use App\Models\User;
 use App\Models\Leaves;
-
-
+use App\Models\Notifications;
 use Hash,Auth,Validator,File;
 
 
@@ -293,7 +292,7 @@ class UserController extends Controller
         $user['medical'] = (5 - $medical); // total 5
 
         if(Auth::user()->role_id == 1){
-            $user['adminNotificationLeaves'] = Leaves::where('to',Auth::user()->id)->where('hide',0)->get();
+            $user['adminNotificationLeaves'] = Notifications::where('to',Auth::user()->id)->where('hide',0)->get();
         }
 
         return  $user;
