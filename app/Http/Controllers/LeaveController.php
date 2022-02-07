@@ -79,13 +79,34 @@ class LeaveController extends Controller
 
     public function submit_leave(Request $request){
 
-        $leaveExist = Leaves::where('user_id',$leave->user_id)->get();
-        
-        if(is_array($leaveExist)){
+        $leaveExist = Leaves::where('user_id',Auth::user()->id)->get();
+        if($leaveExist){
             foreach($leaveExist as $val){
                     if(strtotime($val->from_date) == strtotime($request->from_date)){
-                         Session::flash('success', 'Leave apply Failed');
-            return redirect()->route('leave.users');
+                        if($val->type == 1){
+                            Session::flash('error', 'You are already applied leave for the date : '.$request->from_date);
+                            return redirect()->route('leave.users');
+                        }
+                        if($val->type == 2 && $val->leave_cir_id == 1 && $request->leave_cir_id ==1 ){
+
+                            Session::flash('error', 'You are already applied leave for the date : '.$request->from_date);
+                            return redirect()->route('leave.users');
+                        }
+                        if($val->type == 2 && $val->leave_cir_id == 2 && $request->leave_cir_id ==2 ){
+
+                            Session::flash('error', 'You are already applied leave for the date : '.$request->from_date);
+                            return redirect()->route('leave.users');
+                        }
+                        if($val->type == 3 && $val->leave_cir_id == 3 && $request->leave_cir_id ==3 ){
+
+                            Session::flash('error', 'You are already applied leave for the date : '.$request->from_date);
+                            return redirect()->route('leave.users');
+                        }
+                        if($val->type == 3 && $val->leave_cir_id == 4 && $request->leave_cir_id ==4 ){
+
+                            Session::flash('error', 'You are already applied leave for the date : '.$request->from_date);
+                            return redirect()->route('leave.users');
+                        }
                     }
             }
         }
@@ -239,4 +260,3 @@ class LeaveController extends Controller
 
 
 }
-

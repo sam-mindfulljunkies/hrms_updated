@@ -5,6 +5,9 @@
     width: 275px;
     float: left;
 }
+.alert .alert-error{
+    background-color:#ff9090;
+}
 </style>
 <main class="content">
     <div class="container-fluid p-0">
@@ -22,7 +25,7 @@
                         <div class="alert alert-success" style="padding: 12px;">{{Session::get('success')}}</div>
                         @endif
                         @if(Session::has('error'))
-                        <div class="alert alert-error" style="padding: 12px;">{{Session::get('error')}}</div>
+                        <div class="alert alert-danger" style="padding: 12px;">{{Session::get('error')}}</div>
                         @endif
 
                         <table id="datatables-reponsive" class="table table-strippet" style="width:100%;">

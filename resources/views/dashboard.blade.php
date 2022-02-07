@@ -1,5 +1,11 @@
+
 @extends('layouts.app')
 @section('content')
+@php
+use \App\Http\Controllers\UserController;
+$data = new UserController();
+$admin = $data->getAdminNotifications();
+@endphp
 <style>
 .mt-3 {
     margin-top: 3%;
@@ -53,17 +59,10 @@
                         aria-hidden="true"></i></a>
             </div>
             @endif
+		
+			
 
-
-
-			@if(isset($user['adminNotificationLeaves']))
-			@foreach($user['adminNotificationLeaves'] as $val)
-			<div class="alert alert-warning p-3 mt-3">{{$val->description}}<a
-                    style="right: 2% !important;position: absolute;margin-top: 0.1%;" href=""><i class="fa fa-times"
-                        aria-hidden="true"></i></a>
-            </div>
-			@endforeach
-			@endif
+			
 
 			@if(Auth::user()->certificate_verify !=1 || 
 			Auth::user()->certificate_verify !=1 ||
@@ -75,7 +74,17 @@
             </div>
 			@endif
 			@endif
-			</div>        <div class="row">
+			@if(isset($admin))
+			@foreach($admin as $val)
+			<div class="alert alert-info p-3 mt-3">{{$val->description}}<a
+                    style="right: 2% !important;position: absolute;margin-top: 0.1%;" href=""><i class="fa fa-times"
+                        aria-hidden="true"></i></a>
+            </div>
+			@endforeach
+			@endif
+
+			</div>      
+			  <div class="row">
             <div class="col-md-12">
                 <div class="">
                     <div class="row">

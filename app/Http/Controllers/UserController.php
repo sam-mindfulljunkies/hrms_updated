@@ -294,8 +294,17 @@ class UserController extends Controller
         if(Auth::user()->role_id == 1){
             $user['adminNotificationLeaves'] = Notifications::where('to',Auth::user()->id)->where('hide',0)->get();
         }
-
+        // dd($user);
         return  $user;
+    }
+    public function getAdminNotifications(){
+       
+        if(Auth::user()->role_id == 1){
+            $admin = Notifications::where('to',Auth::user()->id)->where('hide',0)->get();
+        }else{
+            $admin = [];
+        }
+        return  $admin;
     }
 
 
